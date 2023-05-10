@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 페이지</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- SCRIPT -->
+    <script defer src="assets/js/common.js"></script>
+
+</head>
+<body class="gray">
+
+    <div id="skip">
+        <a href="#header">헤더 영역 바로가기</a>
+        <a href="#main">컨텐츠 영역 바로가기</a>
+        <a href="#footer">푸터 영역 바로가기</a>
+    </div>
+    <!-- //skip -->
+
+    <header id="header" class="container">
+        <div class="header__inner">
+            <div class="left">
+                <a href="../index.html" class="star"><span class="blind">메인으로</span></a>
+            </div>
+            <h1 class="logo"><a href="./main.html">HHH.BLOG</a></h1>
+            <div class="right">
+                <ul>
+                    <li><a href="join.html">회원가입</a></li>
+                </ul>
+            </div>
+        </div>
+        <nav class="nav__inner">
+            <ul>
+                <li><a href="join.html">회원가입</a></li>
+                <li><a href="login.html">로그인</a></li>
+                <li><a href="board.html">게시판</a></li>
+                <li><a href="#">블로그</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- //header -->
+
+    <main id="main" class="container">
+        <div class="intro__inner center bmStyle">
+            <picture class="intro__images">
+                <source srcset="assets/img/join01.png, assets/img/join01@2x.png 2x, ../assets/img/join01@3x.png 3x"/>
+                <img src="assets/img/join01.png" alt="소개이미지">
+            </picture>
+            <p class="intro__text">
+                회원가입을 해주세요!
+            </p>
+        </div>
+        <!-- //intro__inner -->
+
+        <div class="join__inner">
+            <h2>회원가입</h2>
+            <div class="index">
+                <ul>
+                    <li>1</li>
+                    <li class="active">2</li>
+                    <li>3</li>
+                </ul>
+            </div>
+            <div class="join__form">
+                <form action="#" name="#" method="post">
+                    <fieldset>
+                        <legend class="blind">회원가입 영역</legend>
+                        <div>
+                            <label for="youName" class="required">이름</label>
+                            <input type="text" id="youName" name="youName" class="inputStyle" placeholder="이름을 적어주세요!" required>
+                            <p class="msg" id="youNameComment">이름은 한글로만 작성할 수 있습니다.</p>
+                        </div>
+                        <div class="over">
+                            <label for="youEmail" class="required">이메일</label>
+                            <input type="emlil" id="youEmail" name="youEmail" class="inputStyle" placeholder="이메일을 적어주세요!" required>
+                            <a href="#c" class="youCheck">이매일 중복검사</a>
+                            <p class="msg" id="youEmailComment">이미 등록되어있는 이메일입니다. 다시확인해주세요.</p>
+                        </div>
+                        <div class="over">
+                            <label for="youNick" class="required">닉네임</label>
+                            <input type="emlil" id="youNick" name="youEmail" class="inputStyle" placeholder="닉네임을 적어주세요!" required>
+                            <a href="#c" class="youCheck">닉네임 중복검사</a>
+                            <p class="msg" id="youNickComment">이미 등록되어있는 닉네임입니다.</p>
+                        </div>
+                        <div>
+                            <label for="youPass" class="required">비밀번호</label>
+                            <input type="password" id="youPass" name="youPass" class="inputStyle" placeholder="비밀번호를 적어주세요!" required>
+                            <p class="msg" id="youPassComment">특수기호, 숫자가 들어가야합니다.</p>
+                        </div>
+                        <div>
+                            <label for="youPassC" class="required">비밀번호 확인</label>
+                            <input type="password" id="youPassC" name="youPassC" class="inputStyle" placeholder="비밀번호를 다시한번 적어주세요!" required>
+                            <p class="msg" id="youPassCComment">비밀번호가 일치하지 않습니다.</p>
+                        </div>
+                        <div>
+                            <label for="youBirth">생년월일</label>
+                            <input type="text" id="youBirth" name="youPassC" class="inputStyle" placeholder="비밀번호를 다시한번 적어주세요!" required>
+                            <p class="msg" id="youBirthComment">생년월일이 정확하지 않습니다.</p>
+                        </div>
+                        <div>
+                            <label for="youPhone">연락처</label>
+                            <input type="text" id="youPhone" name="youPhone" class="inputStyle" placeholder="연락처를 적어주세요!">
+                            <p class="msg" id="youPhoneComment">휴대폰 번호가 정확하지 않습니다.</p>
+                        </div>
+                        <button type="submit" class="btnStyle">회원가입 완료</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </main>
+    <!-- //main -->
+
+    <footer id="footer">
+        <div class="footer__inner btStyle mb100 container">
+            <div>copyright@2023 hyunmi</div>
+            <div>blog by hyunmi</div>
+        </div>
+    </footer>
+    <!-- //footer -->
+
+</body>
+</html>

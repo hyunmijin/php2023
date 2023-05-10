@@ -1,0 +1,119 @@
+.introboard__images {
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.intro__text {
+    font-weight: 500;
+    margin: 20px;
+    text-align: center;
+}
+
+.intro__inner p:nth-child(3) {
+    font-weight: 100;
+    text-align: center;
+    /* background-color: #ccc; */
+}
+
+.board__inner {
+    width: 100%;
+    /* background-color: #ccc; */
+    margin-bottom: 10px;
+}
+
+.board__inner .desc {
+    /* background-color: #000; */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+}
+
+.board__inner .desc a {
+    color: red;
+}
+
+.inputStyle1 {
+    width: 270px;
+    height: 38px;
+    background-color: rgba(255, 255, 255, 0.625);
+    border-style: none;
+    border-radius: 5px;
+}
+
+.sel {
+    background-color: var(--color__white);
+    width: 100px;
+    height: 38px;
+    background-color: rgba(255, 255, 255, 0.625);
+    border-style: none;
+    border-radius: 5px;
+}
+
+.btnStyle3 {
+    background-color: var(--color__white);
+    color: var(--color__black);
+    width: 100px;
+    height: 38px;
+    border-style: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btnStyle4 {
+    background-color: var(--color__black);
+    color: var(--color__white);
+    width: 100px;
+    height: 38px;
+    border-style: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse; 
+    /* 테이블의 경계를 병합 */
+    border-bottom: 2px solid var(--color__black);
+    border-top: 2px solid var(--color__black);
+}
+table tr:nth-child(1) {
+    background-color: #ccc;
+}
+table tr {
+    height: 3vw;
+}
+
+table td {
+    border-top: 1px solid var(--color__black);
+    padding: 0px;
+}
+
+.nav {
+    padding-top: 80px;
+    padding-bottom: 100px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+}
+
+.nav ul {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+}
+
+.nav li {
+    white-space: nowrap;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.footer__inner{
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}

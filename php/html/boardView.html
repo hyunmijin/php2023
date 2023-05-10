@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글보기 페이지</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../html/assets/css/style.css">
+
+    <!-- SCRIPT -->
+    <script defer src="assts/js/common.js"></script>
+
+</head>
+<body class="gray">
+
+    <div id="skip">
+        <a href="#header">헤더 영역 바로가기</a>
+        <a href="#main">컨텐츠 영역 바로가기</a>
+        <a href="#footer">푸터 영역 바로가기</a>
+    </div>
+    <!-- //skip -->
+
+    <header id="header">
+        <div class="header__inner container">
+            <div class="left">
+                <a href="../index.html" class="star"><span class="blind">메인으로</span></a>
+            </div>
+            <h1 class="logo"><a href="./main.html">HHH.BLOG</a></h1>
+            <div class="right">
+                <ul>
+                    <li><a href="join.html">회원가입</a></li>
+                </ul>
+            </div>
+        </div>
+        <nav class="nav__inner">
+            <ul>
+                <li><a href="join.html">회원가입</a></li>
+                <li><a href="login.html">로그인</a></li>
+                <li><a href="board.html">게시판</a></li>
+                <li><a href="#">블로그</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- //header -->
+
+    <main id="main" class="container">
+        <div class="intro__inner center">
+            <picture class="intro__images small">
+                <source srcset="../html/assets/img/board.png, ../assets/img/join01@2x.png 2x, ../assets/img/join01@3x.png 3x"/>
+                <img src="../html/assets/img/board.png" alt="소개이미지">
+            </picture>
+            <h2>게시글 보기</h2>
+            <p class="intro__text">
+                웹디자이너, 웹퍼블리셔, 프론트앤드 개발자를 위한 게시판입니다.<br>
+                    관련된 문의사항은 여기서 확인하세요!
+            </p>
+        </div>
+        <!-- //intro__inner -->
+        <div class="board__inner">
+            <div class="bord__view">
+                <table>
+                    <colgroup>
+                    <col style="width: 20%;">
+                    <col style="width: 80%;">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>제목</th>
+                            <td>게시판 제목입니다.</td>
+                        </tr>
+                        <tr>
+                            <th>등록자</th>
+                            <td>히얼미</td>
+                        </tr>
+                        <tr>
+                            <th>등록일</th>
+                            <td>2023.03.03</td>
+                        </tr>
+                        <tr>
+                            <th>조회수</th>
+                            <td>93</td>
+                        </tr>
+                        <tr>
+                            <th>내용</th>
+                            <td>프론트 앤드 개발자 취업 노하우  
+
+                                기술 스택에 대한 깊은 이해: 프론트 엔드 개발자로 취업하려면 HTML, CSS, JavaScript를 비롯한 웹 기술들에 대한 깊은 이해가 필요합니다. 각 언어와 기술들의 동작 원리와 사용법에 대한 이해를 갖추고, 최신 웹 표준과 개발 동향을 학습하고 적용할 줄 알아야 합니다.
+                                포트폴리오 구성: 프론트 엔드 개발자로 취업하기 위해서는 자신의 작업물을 포트폴리오로 제시하는 것이 중요합니다. 자신의 프로젝트나 개발 경험을 포트폴리오에 구성하여 채용자에게 어필할 수 있도록 해야 합니다. 포트폴리오는 깔끔하고 사용하기 쉬운 인터페이스를 갖추며, 다양한 디바이스에서 동작하는 반응형 웹 페이지로 구성하는 것이 좋습니다.
+                                협업 능력: 프론트 엔드 개발은 백엔드 개발자, 디자이너, 기획자 등 다양한 팀원들과의 협업이 필요한 분야입니다. 따라서 협업 능력을 갖추는 것이 중요합니다. 프로젝트 경험이나 팀 프로젝트를 통해 협업 능력을 강조하는 내용을 포트폴리오에 포함하거나 면접에서 이야기할 수 있도록 준비해야 합니다.
+                                사용자 경험(UX)에 대한 이해: 프론트 엔드 개발자는 사용자의 경험을 개선하는 것이 주요 목표 중 하나입니다. 따라서 사용자 경험에 대한 이해와 관련된 프로젝트나 경험을 어필하는 것이 도움이 됩니다. 웹 접근성, 반응형 웹 디자인, 사용자 인터페이스 디자인 등에 대한 이해와 경험을 어필할 수 있도록 준비해야 합니다.
+                                기술 스택에 대한 깊은 이해: 프론트 엔드 개발자로 취업하려면 HTML, CSS, JavaScript를 비롯한 웹 기술들에 대한 깊은 이해가 필요합니다. 
+                                포트폴리오 구성: 프론트 엔드 개발자로 취업하기 위해서는 자신의 작업물을 포트폴리오로 제시하는 것이 중요합니다. 자신의 프로젝트나 개발 경험을 포트폴리오에 구성하여 채용자에게 어필할 수 있도록 해야 합니다. 포트폴리오는 깔끔하고 사용하기 쉬운 인터페이스를 갖추며, 다양한 디바이스에서 동작하는 반응형 웹 페이지로 구성하는 것이 좋습니다.
+                                협업 능력: 프론트 엔드 개발은 백엔드 개발자, 디자이너, 기획자 등 다양한 팀원들과의 협업이 필요한 분야입니다. 따라서 협업 능력을 갖추는 것이 중요합니다. 프로젝트 경험이나 팀 프로젝트를 통해 협업 능력을 강조하는 내용을 포트폴리오에 포함하거나 면접에서 이야기할 수 있도록 준비해야 합니다.
+                                사용자 경험(UX)에 대한 이해: 프론트 엔드 개발자는 사용자의 경험을 개선하는 것이 주요 목표 중 하나입니다. 따라서 사용자 경험에 대한 이해와 관련된 프로젝트나 경험을 어필하는 것이 도움이 됩니다. 웹 접근성, 반응형 웹 디자인, 사용자 인터페이스 디자인 등에 대한 이해와 경험을 어필할 수 있도록 준비해야 합니다.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="board__btn mb100">
+                <a href="#" class="btnStyle3">수정하기</a>
+                <a href="#" class="btnStyle3">삭제하기</a>
+                <a href="board.html" class="btnStyle3">목록보기</a>
+            </div>
+        </div>          
+    </main>
+    <!-- //main -->
+
+    <footer id="footer">
+        <div class="footer__inner btStyle mb100 container">
+            <div>copyright@2023 hyunmi</div>
+            <div>blog by hyunmi</div>
+        </div>
+    </footer>
+    <!-- //footer -->
+
+</body>
+</html>

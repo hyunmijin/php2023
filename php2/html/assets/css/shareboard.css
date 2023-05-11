@@ -65,7 +65,7 @@
 
 /* desc */
 .shareboard__view .desc {
-    height: 65.5%;
+    height: 65.1%;
     overflow-y: scroll;
     background-color: #f797a24f;
     padding: 20px;
@@ -138,12 +138,13 @@
 
 .shareboard_list .btn {
     align-items: end;
+    margin-top: 30px;
     display: flex;
     /* background-color: #ccc; */
 }
 
 .btnStyle4 {
-    margin-bottom: 0 !important;
+    /* margin-bottom: 0 !important; */
 }
 
 /* shareboard_comment */
@@ -177,4 +178,9 @@
 .shareboard_comment .white .text #boardcomment {
     padding: 15px;
     font-weight: bold;
+}
+
+/* view__num */
+.view__num {
+    height: 100px;
 }

@@ -1,15 +1,21 @@
 <?php
     include "../connect/connect.php";
-
-    $sql = "CREATE TABLE board2(";
-    $sql .= "boardID int(10) unsigned NOT NULL auto_increment,";
-    $sql .= "memberID int(10) NOT NULL,";
-    $sql .= "boardTitle varchar(100) NOT NULL,";
-    $sql .= "boardContents longtext NOT NULL,";
-    $sql .= "boardview int(10) NOT NULL,";
-    $sql .= "regTime int(20) NOT NULL,";
-    $sql .= "PRIMARY KEY(boardID)";
+    $sql = "create table members2(";
+    $sql .= "memberID int(10) unsigned auto_increment,";
+    $sql .= "youEmail varchar(40) UNIQUE NOT NULL,";
+    $sql .= "youName varchar(10) NOT NULL,";
+    $sql .= "youPass varchar(20) NOT NULL,";
+    $sql .= "youPhone varchar(40),";
+    $sql .= "regTime int(40) NOT NULL,";
+    $sql .= "nickName varchar(40) NOT NULL,";
+    $sql .= "youBirth int(20) NOT NULL,";
+    $sql .= "youGender varchar(10) NOT NULL,";
+    $sql .= "PRIMARY KEY(memberID)";
     $sql .= ") charset=utf8;";
-
-    $connect -> query($sql);
+    $result = $connect -> query($sql);
+    if($result){
+        echo "create tables Complete";
+    } else {
+        echo "create tables false";
+    }
 ?>

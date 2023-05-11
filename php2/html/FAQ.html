@@ -5,65 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ</title>
-    <style>
-        .faq__inner {
-            padding-bottom: 40px;
-            font-size: 16px;
-            font-weight: 300;
-        }
-        .faq__inner h2 {
-            padding: 70px 0 70px 0px;
-            font-size: 30px;
-            text-align: center;
-            font-weight: 700;
-        } 
-        .faq__form:nth-last-of-type(1) {
-            margin-bottom: 100px;
-        }
-        
-        .faq__form h3 {
-            padding: 15px 15px 15px 40px;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-            font-size: 16px;
-            font-weight: 500;
-            background-color: #fff;
-            border: 1px solid #F06171;
-            position: relative;
-            cursor: pointer;
-        }
-        .faq__form h3::before {
-            position: absolute;
-            content: '';
-            background-image: url(assets/img/pngwing.com.png);
-            background-size:cover;
-            width: 30px;
-            height: 30px;
-            top: 10px;
-            left: 5px;
-        }
-        .faq__form {
-            width: 100%;
-            max-width: 1270px;
-            margin: 0 auto;
-        }
-        .faq__form ul { 
-            padding-bottom: 50px;
-            
-        }
-        .faq__form ul li {
-            width: 100%;
-            background-color: #ffffff;
-            border: 1px solid #F06171;
-            margin-top: -1px;
-            padding: 20px;
-            display: none;
-        }
-        .open {
-            display: block !important;
-        }
-
-    </style>
+    
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -115,6 +57,13 @@
     <!-- //header -->
 
     <main id="main" class="mt70">
+        <div id="board__header" class="mt100" >
+            <div><a href="#">뉴스보기</a></div>        <!-- news-->
+            <div><a href="#">공유게시판</a></div>      <!-- share-->
+            <div><a href="#">공지사항</a></div>        <!-- notice-->
+            <div class="active"><a href="#">FAQ</a></div>            <!-- faq-->
+        </div>
+        <!-- board__header -->
         <div class="faq__inner">
             <h2>FAQ</h2>
             <div class="faq__form">

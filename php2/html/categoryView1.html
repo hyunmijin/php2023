@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>main페이지</title>
+    <title>카테고리 메이크업 페이지</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
@@ -22,14 +22,13 @@
                     <img src="assets/img/kategorie.png" alt="">
                 </div>
                 <ul>
-                    <li><a href="#">기초</a></li>
-                    <li><a href="#">마스크팩</a></li>
-                    <li><a href="#">선케어</a></li>
-                    <li><a href="#">클렌징</a></li>
-                    <li><a href="#">메이크업</a></li>
-                    <li><a href="#">헤어</a></li>
-                    <li><a href="#">바디</a></li>
-                    <li><a href="#">커뮤니티</a></li>
+                    <li><a href="../html/categoryView1.html">기초</a></li>
+                    <li><a href="../html/categoryView2.html">선크림</a></li>
+                    <li><a href="../html/categoryView3.html">메이크업</a></li>
+                    <li><a href="../html/categoryView4.html">헤어</a></li>
+                    <li><a href="../html/categoryView5.html">클렌징</a></li>
+                    <li><a href="../html/categoryView6.html">바디</a></li>
+                    <li><a href="../html/categoryView7.html">마스크팩</a></li>
                 </ul>
             </div>
             <div class="logo">
@@ -50,17 +49,31 @@
     </header>
     <!-- //header -->
     <!-- //header -->
-    <main id="main container" class="mt80">
+    <main id="category-main container" class="mt80">
         <div class="category__inner">
             <div class="category">
                 <div class="category_logo">
-                    <img src="../html/assets/img/beauty_icon01.png" alt="">
-                    <img src="../html/assets/img/beauty_icon02.png" alt="">
-                    <img src="../html/assets/img/beauty_icon03.png" alt="">
-                    <img src="../html/assets/img/beauty_icon04.png" alt="">
-                    <img src="../html/assets/img/beauty_icon05.png" alt="">
-                    <img src="../html/assets/img/beauty_icon06.png" alt="">
-                    <img src="../html/assets/img/beauty_icon07.png" alt="">
+                    <a href="../html/categoryView1.html">
+                        <img src="../html/assets/img/beauty_icon07.png" style=background-color:#F06171;  alt="기초">
+                    </a>
+                    <a href="../html/categoryView2.html">
+                        <img src="../html/assets/img/beauty_icon03.png" alt="선크림">
+                    </a>
+                    <a href="../html/categoryView3.html">
+                        <img src="../html/assets/img/beauty_icon01.png" alt="메이크업">
+                    </a>
+                    <a href="../html/categoryView4.html">
+                        <img src="../html/assets/img/beauty_icon02.png" alt="헤어">
+                    </a>
+                    <a href="../html/categoryView5.html">
+                        <img src="../html/assets/img/beauty_icon04.png" alt="클렌징">
+                    </a>
+                    <a href="../html/categoryView6.html">
+                        <img src="../html/assets/img/beauty_icon05.png" alt="바디">
+                    </a>
+                    <a href="../html/categoryView7.html">
+                        <img src="../html/assets/img/beauty_icon06.png" alt="마스크팩">
+                    </a>
                 </div>
             </div>
             <div class="product-registration">
@@ -71,29 +84,30 @@
                     <div class="section1">
                         <select name="#" id="select1">
                             <option value="title">제품선택하기</option>
-                            <option value="content">클렌징오일</option>
-                            <option value="name">클렌징폼</option>
+                            <option value="content">스킨, 토너, 로션</option>
+                            <option value="name">에센스, 세럼, 앰플</option>
+                            <option value="name">크림</option>
                         </select>
                         <label for="date-input"></label>
-                        <input type="date" id="date-input" name="date">
-                        <button type="submit" class="btnStyle5">유통기한 확인하기</button>
+                        <input class="input1" type="date" id="date-input" name="date">
+                        <button type="submit" class="btnStyle6">유통기한 확인하기</button>
                     </div>
                     <div class="section2">
-                        <button type="button" onclick="location.href='boardWrite.html';" class="btnStyle5">등록된 화장품
+                        <button type="button" onclick="location.href='boardWrite.html';" class="btnStyle6">등록된 화장품
                             확인하기</button>
                     </div>
                 </div>
             </div>
             <div class="product">
-                <h3>헤어 제품 유통기한 정보</h3>
+                <h3>기초 제품 유통기한 정보</h3>
                 <div class="product_inner">
                     <div>
                         <article class="card">
                             <figure class="card__header">
-                                <img src="../html/assets/img/hair1.png" alt="샴푸">
+                                <img src="../html/assets/img/lotion1.png" alt="샴푸">
                             </figure>
                             <div class="card__body">
-                                <h3 class="title">SHAMPOO</h3>
+                                <h3 class="title">LOTION</h3>
                                 <p class="desc">
                                     개봉 전 36개월<br>
                                     개봉 후 12개월
@@ -102,10 +116,10 @@
                         </article>
                         <article class="card">
                             <figure class="card__header">
-                                <img src="../html/assets/img/hair1.png" alt="샴푸">
+                                <img src="../html/assets/img/lotion1.png" alt="샴푸">
                             </figure>
                             <div class="card__body">
-                                <h3 class="title">SHAMPOO</h3>
+                                <h3 class="title">LOTION</h3>
                                 <p class="desc">
                                     개봉 전 36개월<br>
                                     개봉 후 12개월
@@ -114,10 +128,10 @@
                         </article>
                         <article class="card">
                             <figure class="card__header">
-                                <img src="../html/assets/img/hair1.png" alt="샴푸">
+                                <img src="../html/assets/img/lotion1.png" alt="샴푸">
                             </figure>
                             <div class="card__body">
-                                <h3 class="title">SHAMPOO</h3>
+                                <h3 class="title">LOTION</h3>
                                 <p class="desc">
                                     개봉 전 36개월<br>
                                     개봉 후 12개월
@@ -126,60 +140,10 @@
                         </article>
                         <article class="card">
                             <figure class="card__header">
-                                <img src="../html/assets/img/hair1.png" alt="샴푸">
+                                <img src="../html/assets/img/lotion1.png" alt="샴푸">
                             </figure>
                             <div class="card__body">
-                                <h3 class="title">SHAMPOO</h3>
-                                <p class="desc">
-                                    개봉 전 36개월<br>
-                                    개봉 후 12개월
-                                </p>
-                            </div>
-                        </article>
-                    </div>
-                    <div>
-                        <article class="card">
-                            <figure class="card__header">
-                                <img src="../html/assets/img/hair1.png" alt="샴푸">
-                            </figure>
-                            <div class="card__body">
-                                <h3 class="title">SHAMPOO</h3>
-                                <p class="desc">
-                                    개봉 전 36개월<br>
-                                    개봉 후 12개월
-                                </p>
-                            </div>
-                        </article>
-                        <article class="card">
-                            <figure class="card__header">
-                                <img src="../html/assets/img/hair1.png" alt="샴푸">
-                            </figure>
-                            <div class="card__body">
-                                <h3 class="title">SHAMPOO</h3>
-                                <p class="desc">
-                                    개봉 전 36개월<br>
-                                    개봉 후 12개월
-                                </p>
-                            </div>
-                        </article>
-                        <article class="card">
-                            <figure class="card__header">
-                                <img src="../html/assets/img/hair1.png" alt="샴푸">
-                            </figure>
-                            <div class="card__body">
-                                <h3 class="title">SHAMPOO</h3>
-                                <p class="desc">
-                                    개봉 전 36개월<br>
-                                    개봉 후 12개월
-                                </p>
-                            </div>
-                        </article>
-                        <article class="card">
-                            <figure class="card__header">
-                                <img src="../html/assets/img/hair1.png" alt="샴푸">
-                            </figure>
-                            <div class="card__body">
-                                <h3 class="title">SHAMPOO</h3>
+                                <h3 class="title">LOTION</h3>
                                 <p class="desc">
                                     개봉 전 36개월<br>
                                     개봉 후 12개월
@@ -190,10 +154,10 @@
                     <div>
                         <article class="card">
                             <figure class="card__header">
-                                <img src="../html/assets/img/hair1.png" alt="샴푸">
+                                <img src="../html/assets/img/lotion1.png" alt="샴푸">
                             </figure>
                             <div class="card__body">
-                                <h3 class="title">SHAMPOO</h3>
+                                <h3 class="title">LOTION</h3>
                                 <p class="desc">
                                     개봉 전 36개월<br>
                                     개봉 후 12개월
@@ -202,10 +166,10 @@
                         </article>
                         <article class="card">
                             <figure class="card__header">
-                                <img src="../html/assets/img/hair1.png" alt="샴푸">
+                                <img src="../html/assets/img/lotion1.png" alt="샴푸">
                             </figure>
                             <div class="card__body">
-                                <h3 class="title">SHAMPOO</h3>
+                                <h3 class="title">LOTION</h3>
                                 <p class="desc">
                                     개봉 전 36개월<br>
                                     개봉 후 12개월
@@ -214,10 +178,10 @@
                         </article>
                         <article class="card">
                             <figure class="card__header">
-                                <img src="../html/assets/img/hair1.png" alt="샴푸">
+                                <img src="../html/assets/img/lotion1.png" alt="샴푸">
                             </figure>
                             <div class="card__body">
-                                <h3 class="title">SHAMPOO</h3>
+                                <h3 class="title">LOTION</h3>
                                 <p class="desc">
                                     개봉 전 36개월<br>
                                     개봉 후 12개월
@@ -226,10 +190,60 @@
                         </article>
                         <article class="card">
                             <figure class="card__header">
-                                <img src="../html/assets/img/hair1.png" alt="샴푸">
+                                <img src="../html/assets/img/lotion1.png" alt="샴푸">
                             </figure>
                             <div class="card__body">
-                                <h3 class="title">SHAMPOO</h3>
+                                <h3 class="title">LOTION</h3>
+                                <p class="desc">
+                                    개봉 전 36개월<br>
+                                    개봉 후 12개월
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                    <div>
+                        <article class="card">
+                            <figure class="card__header">
+                                <img src="../html/assets/img/lotion1.png" alt="샴푸">
+                            </figure>
+                            <div class="card__body">
+                                <h3 class="title">LOTION</h3>
+                                <p class="desc">
+                                    개봉 전 36개월<br>
+                                    개봉 후 12개월
+                                </p>
+                            </div>
+                        </article>
+                        <article class="card">
+                            <figure class="card__header">
+                                <img src="../html/assets/img/lotion1.png" alt="샴푸">
+                            </figure>
+                            <div class="card__body">
+                                <h3 class="title">LOTION</h3>
+                                <p class="desc">
+                                    개봉 전 36개월<br>
+                                    개봉 후 12개월
+                                </p>
+                            </div>
+                        </article>
+                        <article class="card">
+                            <figure class="card__header">
+                                <img src="../html/assets/img/lotion1.png" alt="샴푸">
+                            </figure>
+                            <div class="card__body">
+                                <h3 class="title">LOTION</h3>
+                                <p class="desc">
+                                    개봉 전 36개월<br>
+                                    개봉 후 12개월
+                                </p>
+                            </div>
+                        </article>
+                        <article class="card">
+                            <figure class="card__header">
+                                <img src="../html/assets/img/lotion1.png" alt="샴푸">
+                            </figure>
+                            <div class="card__body">
+                                <h3 class="title">LOTION</h3>
                                 <p class="desc">
                                     개봉 전 36개월<br>
                                     개봉 후 12개월

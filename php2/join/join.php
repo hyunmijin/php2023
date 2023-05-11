@@ -42,6 +42,7 @@
                         <div>
                             <label for="memberID"></label>
                             <input type="text" id="memberID" name="memberID" class="inputStyle" placeholder="아이디" required>
+                            <span id="chkMemberId" class="checkResult">
                         </div>
                         <div>
                             <label for="youPass"></label>
@@ -54,13 +55,11 @@
                         <div>
                             <label for="youName"></label>
                             <input type="text" id="youName" name="youName" class="inputStyle" placeholder="이름" required>
-                            <span id="chkname"></span>
                         </div>
                         <div>
                             <label for="youPhone"></label>
                             <input type="text" id="youPhone" name="youPhone" class="inputStyle" placeholder="휴대폰번호" required>
                             <span id="chkPhone"></span>
-
                         </div>
                         <div>
                             <label for="nickName"></label>
@@ -79,6 +78,8 @@
                                 <option value="여">여</option>
                             </select>
                         </div>
+                        
+                        
                         <button type="submit" class="btnStyle3">회원가입 완료</button>
                     </fieldset>
                 </form>
@@ -88,8 +89,11 @@
     <!-- main -->
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <script>
+        // 윈도우 로드시 window.onload 함수 쓴것과 같음
         $( document ).ready(function() {
+            
             //nickName 을 keyup했을때 
+            // document.querySelector("#nickName").addEventListener("keyup",()=>{ }); 을 아래방식으로 한거임
             $('#nickName').keyup(function(){
                 console.log('first');
                 $.ajax({
@@ -101,44 +105,28 @@
                     $("#chkNickName").html(data);   //결과값 세팅해주기
                 });
             });
-            $('#memberID').keyup(function(){
-                console.log('first');
-                $.ajax({
-                    url: "chkJoin/joinChkID.php",
-                    type: "post",
-                    data: $("#nickName").serialize()
-                }).done(function(data){
-                    $("#chknickName").html(data);
-                });
+            //memberID keyup했을때
+            // $('#memberID').keyup(function(){
+            //     console.log('first');
+            //     $.ajax({
+            //         url: "chkJoin/joinChkID.php",
+            //         type: "post",
+            //         data: $("#nickName").serialize()
+            //     }).done(function(data){			
+            //         $("#chknickName").html(data);		
+            //     });
                 
-            });
-
+            // });
             // document.querySelector("#youPhone").addEventListener("keyup",()=>{ }); 1번방식
             $('#youPhone').keyup(function(){                                         //2번방식
-                
                 //php 문법을 javascript 문법으로 변경
                 const phoneChk= document.getElementById("youPhone").value;
                 console.log(phoneChk);
                 let check_number = /^(010|011|016|017|018|019)-[0-9]{4}-[0-9]{4}$/;
-
                 if(!check_number.test(phoneChk)){
                     $("#chkPhone").text("번호가 정확하지 않습니다. 올바른번호 (000-0000-0000) 형식으로 작성해 주세요");   //결과값 세팅해주기
                 }else{
                     $("#chkPhone").text("사용가능합니다");   //결과값 세팅해주기
-                }
-            });
-
-            $('#youName').keyup(function(){                                         //2번방식
-                
-                //php 문법을 javascript 문법으로 변경
-                const nameChk= document.getElementById("youName").value;
-                console.log(nameChk);
-                let check_name = /^[가-힣]{9,15}$/;
-
-                if(!check_name.test(nameChk)){
-                    $("#chkname").text("이름을 다시확인해주세요. 영어또는 글자수를 확인해주세요");   //결과값 세팅해주기
-                }else{
-                    $("#chkname").text("사용가능합니다");   //결과값 세팅해주기
                 }
             });
         });

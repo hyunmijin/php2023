@@ -14,9 +14,9 @@
         if($result){
             $count = $result -> num_rows;
             if($count==1){
-                echo ("사용중인 닉네임 입니다.");
+                echo ("false");
             }else{
-                echo ("사용가능한 닉네임 입니다.");
+                echo ("true");
             }
         }else{
             msg("에러발생1111");

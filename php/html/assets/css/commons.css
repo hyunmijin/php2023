@@ -102,6 +102,17 @@
    border-radius: 5px;
    cursor: pointer;
  }
+ .btnStyle4 {    /* 기본 버튼 스타일 */
+   display: inline-block;
+   font-size: 1rem;
+   text-align: center;
+   padding: 0.8em 2em;
+   margin: 0 0.5em;
+   background-color: var(--color__black);
+   color: var(--color__white);
+   border-radius: 100px;
+   cursor: pointer;
+ }
 
 
  /* 간격설정 */
@@ -134,7 +145,15 @@
    border: 0;
    font-weight: 300;
 }
-
+.inputStyle2 {
+   width: 30%;
+   background-color: #fff;
+   border-radius: 100px;
+   padding: 0.8em 2em;
+   border: 0;
+   font-weight: 300;
+   /* border: 3px solid var(--color__black); */
+}
 /* label */
 .label{
    display: block;

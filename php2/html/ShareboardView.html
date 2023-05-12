@@ -162,8 +162,14 @@
                         </div>
                     </div>
                     <div class="view__num">
-                        <h3>조회수</h3>
-                        <h3>좋아요</h3>
+                        <div class="num">
+                            <h3>조회수 <span>10 </span></h3>
+                            <h4>좋아요 💜 <span> 10명이 좋아합니다</span> </h4>
+                        </div>
+                        <div class="edit">
+                            <a href="">수정  /</a>
+                            <a href="">삭제</a>
+                        </div>
                     </div>
 
                     <div class="shareboard_list">
@@ -193,26 +199,33 @@
                     </div>
                     <div class="shareboard_comment">
                         <h4>댓글</h4>
-                        <div class="view abbStyle abbStyle2" >
-                                <img src="../html/assets/img/shareboard-profile2.png" alt="">
-                                <div>
-                                    <h6>닉네임</h6>
-                                    <p>저도 한번 써봐야겠네요 넘 좋아보여요~!</p>
-                                </div>
+                        <div class="view abbStyle abbStyle2">
+                            <img src="../html/assets/img/shareboard-profile2.png" alt="">
+                            <div class="text">
+                                <h6>닉네임</h6>
+                                <p>저도 한번 써봐야겠네요 넘 좋아보여요~!</p>
+                            </div>
+                            <div class="edit">
+                                <a href="">수정  /</a>
+                                <a href="">삭제</a>
+                            </div>
                         </div>
                         <div class="white">
                             <div class="text">
                                 <form>
-                                    <textarea name="boardcomment" id="boardcomment" rows="40" class="inputStyle3 board__contents" placeholder="댓글을 입력하세요"></textarea>
-                                  </form>
+                                    <textarea name="boardcomment" id="boardcomment" rows="40"
+                                        class="inputStyle3 board__contents" placeholder="댓글을 입력하세요"></textarea>
+                                </form>
                             </div>
-                            <label>
-                                <input type="checkbox" name="agree">
-                                동의합니다.
-                              </label>
-                              
+                            <div class="end">
+                                <label>
+                                    <input type="checkbox" name="agree">
+                                    비밀글
+                                </label>
+                                <a href="board.html" class="btnStyle6">등록하기 </a>
+                            </div>
                         </div>
-                        
+
                     </div>
                 </div>
 

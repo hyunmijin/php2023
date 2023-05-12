@@ -14,9 +14,9 @@
 }
 
 .shareboard__view {
-    border-bottom: 1px solid #d4d4d4;
+    /* border-bottom: 1px solid #d4d4d4; */
     display: flex;
-    margin-bottom: 100px;
+    margin-bottom: 20px;
     justify-content: space-between;
 }
 
@@ -149,38 +149,106 @@
 
 /* shareboard_comment */
 .shareboard_comment {
-    margin-top: 7%;
+    margin-top: 5%;
 }
-.shareboard_comment h4{
+
+.shareboard_comment h4 {
     margin-bottom: 2%;
     font-weight: bold;
     font-size: 16px;
 }
+
 .shareboard_comment .view {
     display: flex;
     padding: 3% 0;
+    justify-content: space-between;
 }
+
+.shareboard_comment .view .text {
+    /* background-color: #ccc; */
+    margin-right: 580px;
+}
+
+.shareboard_comment .view .edit {
+    margin-top: 30px;
+}
+
 .shareboard_comment img {
     width: 5%;
 }
-.shareboard_comment .view >div {
+
+.shareboard_comment .view>div {
     margin-left: 10px;
 }
-.shareboard_comment .view >div h6 {
+
+.shareboard_comment .view>div h6 {
     font-weight: bold;
 }
-.shareboard_comment .view >div p {
+
+.shareboard_comment .view>div p {
     font-weight: lighter;
 }
+
 .shareboard_comment .white {
     margin-top: 30px;
 }
+
 .shareboard_comment .white .text #boardcomment {
     padding: 15px;
     font-weight: bold;
 }
 
+/* end */
+.shareboard_comment .white .end {
+    /* background-color: #ccc; */
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0px 0px;
+    margin-bottom: 50px;
+}
+
+.shareboard_comment .white .end label {
+    font-size: 14px;
+}
+
+.shareboard_comment .white .end .btn {
+    width: 20%;
+}
+
 /* view__num */
 .view__num {
-    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 100px;
+    margin-top: -20px;
+}
+
+.view__num .num {
+    height: 40px;
+    /* margin-bottom: 90px; */
+    display: flex;
+}
+
+.view__num .num>h3 {
+    font-size: 16px;
+    font-weight: bold;
+    padding-right: 40px;
+}
+
+.view__num .num>h4 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.view__num .num>h4 span {
+    font-size: 12px;
+}
+
+.view__num .edit {}
+
+.view__num .edit a {
+    /* background-color: #ccc; */
+    padding-bottom: 20px;
 }

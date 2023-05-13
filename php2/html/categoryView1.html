@@ -54,7 +54,7 @@
             <div class="category">
                 <div class="category_logo">
                     <a href="../html/categoryView1.html">
-                        <img src="../html/assets/img/beauty_icon07.png" style=background-color:#F06171;  alt="기초">
+                        <img src="../html/assets/img/beauty_icon07.png" style=background-color:#F06171; alt="기초">
                     </a>
                     <a href="../html/categoryView2.html">
                         <img src="../html/assets/img/beauty_icon03.png" alt="선크림">
@@ -82,22 +82,32 @@
                 </h3>
                 <div class="product-choice">
                     <div class="section1">
-                        <select name="#" id="select1">
-                            <option value="title">제품선택하기</option>
-                            <option value="content">스킨, 토너, 로션</option>
-                            <option value="name">에센스, 세럼, 앰플</option>
-                            <option value="name">크림</option>
-                        </select>
-                        <label for="date-input"></label>
-                        <input class="input1" type="date" id="date-input" name="date">
-                        <button type="submit" class="btnStyle6">유통기한 확인하기</button>
+                        <div class="section1-1">
+                            <select name="#" id="select1">
+                                <option value="title">제품선택하기</option>
+                                <option value="content">스킨, 토너, 로션</option>
+                                <option value="name">에센스, 세럼, 앰플</option>
+                                <option value="name">크림</option>
+                            </select>
+                            <label for="date-input"></label>
+                            <input class="input1" type="date" id="date-input" name="date">
+                            <button type="submit" class="btnStyle6"><a href="../html/categoryViewdate.html">유통기한 확인하기</a></button>
+                        </div>
+                        <div class="section1-2">
+                            <button type="button" onclick="location.href='boardWrite.html';" class="btnStyle6">등록된 화장품
+                                확인하기</button>
+                        </div>
                     </div>
-                    <div class="section2">
-                        <button type="button" onclick="location.href='boardWrite.html';" class="btnStyle6">등록된 화장품
-                            확인하기</button>
-                    </div>
+                    <!-- <div class="datecheck">
+                        <img src="../html/assets/img/categoryViewdate.png" alt="로션">
+                        <p><span>닉네임</span> 님이 확인하신 제품의 <span>유통기한은</span><br>
+                            <span>"2023.12.31"</span>까지 입니다.<br>
+                            잘 확인하고 사용해주세요 감사합니다.</p>
+                    </div> -->
                 </div>
+
             </div>
+
             <div class="product">
                 <h3>기초 제품 유통기한 정보</h3>
                 <div class="product_inner">

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>카테고리 헤어 페이지</title>
+    <title>카테고리 메이크업 페이지</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
@@ -82,21 +82,32 @@
                 </h3>
                 <div class="product-choice">
                     <div class="section1">
-                        <select name="#" id="select1">
-                            <option value="title">제품선택하기</option>
-                            <option value="content">클렌징오일</option>
-                            <option value="name">클렌징폼</option>
-                        </select>
-                        <label for="date-input"></label>
-                        <input type="date" id="date-input" class ="input1" name="date">
-                        <button type="submit" class="btnStyle6">유통기한 확인하기</button>
+                        <div class="section1-1">
+                            <select name="#" id="select1">
+                                <option value="title">제품선택하기</option>
+                                <option value="content">스킨, 토너, 로션</option>
+                                <option value="name">에센스, 세럼, 앰플</option>
+                                <option value="name">크림</option>
+                            </select>
+                            <label for="date-input"></label>
+                            <input class="input1" type="date" id="date-input" name="date">
+                            <button type="submit" class="btnStyle6">유통기한 확인하기</button>
+                        </div>
+                        <div class="section1-2">
+                            <button type="button" onclick="location.href='boardWrite.html';" class="btnStyle6">등록된 화장품
+                                확인하기</button>
+                        </div>
                     </div>
-                    <div class="section2">
-                        <button type="button" onclick="location.href='boardWrite.html';" class="btnStyle6">등록된 화장품
-                            확인하기</button>
-                    </div>
+                    <!-- <div class="datecheck">
+                        <img src="../html/assets/img/categoryViewdate.png" alt="로션">
+                        <p><span>닉네임</span> 님이 확인하신 제품의 <span>유통기한은</span><br>
+                            <span>"2023.12.31"</span>까지 입니다.<br>
+                            잘 확인하고 사용해주세요 감사합니다.</p>
+                    </div> -->
                 </div>
+
             </div>
+
             <div class="product">
                 <h3>헤어 제품 유통기한 정보</h3>
                 <div class="product_inner">

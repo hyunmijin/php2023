@@ -52,7 +52,7 @@
 }
 
 #select1 {
-    width: 270px;
+    width: 25%;
     height: 45px;
     padding: 11px;
     font-size: 16px;
@@ -87,35 +87,63 @@
 }
 
 .product-choice {
-    justify-content: space-between;
-    display: flex;
+    width: 100%;
+    /* justify-content: space-between; */
+    display: inline-block;
     background-color: #fff;
     padding: 20px;
     text-align: center;
+    border-radius: 10px;
 }
 
+/* datecheck */
+.product-registration .datecheck {
+    margin-top: 40px;
+}
+.product-registration .datecheck img{
+    width: 10%;
+}
+.product-registration .datecheck p {
+    font-size: 18px;
+
+    font-weight: 400;
+    margin-top: 20px;
+    line-height: 1.5;
+}
+.product-registration .datecheck span {
+    padding-bottom: 1.5em;
+    font-weight: bold;
+    font-size: 19px;
+}
 .section1 {
+    display: flex;
+    justify-content: space-between;
+    text-align: start;
+}
+
+.section1-1 {
     width: 70%;
     display: flex;
-    /* justify-content: flex-start; */
+}
+
+.section1-2 {
     text-align: start;
 }
 
-.section2 {
-    text-align: start;
-}
-
-.section2 button {
+.section1-2 button {
     cursor: pointer;
 }
 
-.section1 label,
-.section1 .input1,
-.section1 button {
+.section1-1 label,
+.section1-1 .input1,
+.section1-1 button {
     margin-right: 15px;
     cursor: pointer;
 }
 
+.section1-1 button a {
+    color: #fff;
+}
 .section1 .select1 {
     width: 25%;
 }

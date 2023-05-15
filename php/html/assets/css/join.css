@@ -1,3 +1,4 @@
+
 /* join__inner */
 .join__inner {
     /* display: flex; */
@@ -104,6 +105,8 @@
     height: 17px;
     vertical-align: -4px;
 }
+
+
 /* media */
 @media (max-width:600px){
     .intro__inner.center .intro__text {

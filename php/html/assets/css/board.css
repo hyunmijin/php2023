@@ -128,25 +128,3 @@
     margin-top: 10px;
 }
 
-/* blog__write */
-.blog__write {
-    padding: 50px 0 100px;
-    width: 100%;
-}
-.blog__write label {
-    width: 100%;
-    font-size: 20px;
-    display: block;
-    margin-bottom: 10px;
-}
-.blog__write input {
-    margin-bottom: 50px;
-}
-.blog__write textarea {
-    padding: 2em;
-    resize: none;
-}
-.blog__write button {
-    float: right;
-    margin-top: 10px;
-}

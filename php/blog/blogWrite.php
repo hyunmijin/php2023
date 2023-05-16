@@ -1,63 +1,33 @@
+<?php
+    include "../connect/connect.php";
+    include "../connect/session.php";
+?>
+
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP 블로그 만들기</title>\
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="../html/assets/css/style.css">
-    <!-- Toast UI Editor -->
-    <style>
+    <title>블로그</title>
+        <!-- Toast UI Editor -->
+        <style>
         :not(.auto-height)>.toastui-editor-defaultUI>.toastui-editor-main {
             background-color: #fff;
         }
     </style>
     <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 
-    <!-- SCRIPT -->
-    <script defer src="assets/js/common.js"></script>
-
+    <?php include "../include/head.php" ?>
 </head>
-
 <body class="gray">
 
-    <div id="skip">
-        <a href="#header">헤더 영역 바로가기</a>
-        <a href="#main">컨텐츠 영역 바로가기</a>
-        <a href="#footer">푸터 영역 바로가기</a>
-    </div>
+    <?php include "../include/skip.php" ?>
     <!-- //skip -->
 
-    <header id="header">
-        <div class="header__inner container">
-            <div class="left">
-                <a href="../index.html" class="star">
-                    <span class="blind">리스트보기</span>
-                </a>
-            </div>
-            <h1 class="logo">
-                <a href="main.html">HHH.BLOG</a>
-            </h1>
-            <div class="right">
-                <ul>
-                    <li><a href="join.html">회원가입</a></li>
-                </ul>
-            </div>
-        </div>
-        <nav class="nav__inner">
-            <ul>
-                <li><a href="join.html">회원가입</a></li>
-                <li><a href="login.html">로그인</a></li>
-                <li><a href="board.html">게시판</a></li>
-                <li><a href="blog.html">블로그</a></li>
-            </ul>
-        </nav>
-    </header>
+    <?php include "../include/header.php" ?>
     <!-- //header -->
-
+    
     <main id="main" class="container">
         <div class="bolg__search">
             <h2>개발자 블로그 게시글 작성</h2>
@@ -65,12 +35,12 @@
         </div>
         <div class="bolg__inner btStyle">
             <div class="blog__write">
-                <form action="blogWriteSave.php" name="blogWriteSave" method="post">
+                <form action="blogWriteSave.php" name="blogWriteSave" method="post" enctype="multipart/form-data">
                     <fieldset>
                         <legend class="blind">게시글 작성하기</legend>
                         <div>
-                            <label for="bolgCatagory">카테고리</label>
-                            <select name="bolgCatagory" id="bolgCatagory">
+                            <label for="blogCategory">카테고리</label>
+                            <select name="blogCategory" id="blogCategory">
                                 <option value="javascript">javascript</option>
                                 <option value="jquery">jquery</option>
                                 <option value="react">react</option>
@@ -80,12 +50,16 @@
                         </div>
                         <div>
                             <label for="blogTitle">제목</label>
-                            <input type="text" id="blog__title" name="blog__title" class="inputStyle">
+                            <input type="text" id="blog__title" name="blogTitle" class="inputStyle" required>
                         </div>
                         <div>
                             <label for="blogContents">내용</label>
-                            <div id="editor"></div>
-                            <!-- <textarea name="blogContents" id="blogContents" rows="10" class="inputStyle"></textarea> -->
+                            <!-- <div id="editor"></div> -->
+                            <textarea name="blogContents" id="blogContents" rows="10" class="inputStyle" required></textarea>
+                        </div>
+                        <div class="mt30">
+                            <label for="blogFile">파일</label>
+                            <input type="file" name="blogFile" id="blogFile" accept=".jpg, .jpeg, .phg, .gif" placeholder="jpg, gif, png 파일만 넣을 수 있습니다. 이미지 용량은 1메가를 넘길 수 없습니다.">
                         </div>
                         <button type="submit" class="btnStyle3">저장하기</button>
                     </fieldset>
@@ -113,13 +87,9 @@
     </main>
     <!-- //main -->
 
-    <footer id="footer">
-        <div class="footer__inner btStyle mb100 container">
-            <div>copyright@2023 hyunmi</div>
-            <div>blog by hyunmi</div>
-        </div>
-    </footer>
+    <?php include "../include/footer.php" ?>
     <!-- //footer -->
+
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
     <script>
         const Editor = toastui.Editor;
@@ -132,5 +102,4 @@
         });
     </script>
 </body>
-
 </html>

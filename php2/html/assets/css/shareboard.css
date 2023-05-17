@@ -65,7 +65,7 @@
 
 /* desc */
 .shareboard__view .desc {
-    height: 65.1%;
+    height: 360px;
     overflow-y: scroll;
     background-color: #f797a24f;
     padding: 20px;
@@ -99,11 +99,11 @@
     position: relative;
 }
 
-.list a {
+.shareboard_list .list a {
     position: relative;
 }
 
-.list a::before {
+.shareboard_list .list a::before {
     content: "다른 게시물 보러가기";
     color: #fff;
     text-align: center;
@@ -122,7 +122,7 @@
     /* 투명도 전환 효과를 설정합니다 */
 }
 
-.list a:hover::before {
+.shareboard_list .list a:hover::before {
     opacity: 1;
 }
 
@@ -222,7 +222,7 @@
     justify-content: space-between;
     border-bottom: 1px solid #ccc;
     margin-bottom: 100px;
-    margin-top: -20px;
+    margin-top: 40px;
 }
 
 .view__num .num {

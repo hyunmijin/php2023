@@ -22,9 +22,10 @@
     <!-- //skip -->
     
     <main id="main" class="container mt70">
-
-    <?php include "../include/abbHeader.php" ?>
-
+    
+        <?php include "../include/abbHeader.php" ?>
+        <!-- //header -->
+        
         <div class="join__inner ">
             <h2>회원가입</h2>
             <p>회원가입을 위해 아이디와 비밀번호를 등록해주세요.</p>
@@ -40,39 +41,39 @@
                         </div>
                         <div>
                             <label for="youPass"></label>
-                            <input type="password" id="youPass" name="youPass" class="inputStyle" placeholder="비밀번호" >
+                            <input type="password" id="youPass" name="youPass" class="inputStyle" placeholder="비밀번호">
                             <p class="joinChkmsg" id="youPassComment"></p>
                         </div>
                         <div>
                             <label for="youPassC"></label>
-                            <input type="password" id="youPassC" name="youPassC" class="inputStyle" placeholder="비밀번호 확인" >
+                            <input type="password" id="youPassC" name="youPassC" class="inputStyle" placeholder="비밀번호 확인">
                             <p class="joinChkmsg" id="youPassCComment"></p>
                         </div>
                         <div>
                             <label for="youName"></label>
-                            <input type="text" id="youName" name="youName" class="inputStyle" placeholder="이름" >
+                            <input type="text" id="youName" name="youName" class="inputStyle" placeholder="이름">
                             <p class="joinChkmsg" id="youNameComment"></p>
                         </div>
                         <div>
                             <label for="youPhone"></label>
-                            <input type="text" id="youPhone" name="youPhone" class="inputStyle" placeholder="휴대폰번호" >
+                            <input type="text" id="youPhone" name="youPhone" class="inputStyle" placeholder="휴대폰번호">
+                            <p class="joinChkmsg" id="youPhoneComment"></p>   
                             <span id="chkPhone"></span>
-                            <p class="joinChkmsg" id="youPhoneComment"></p>
                         </div>
                         <div>
                             <label for="nickName"></label>
-                            <input type="text" id="nickName" name="nickName" class="inputStyle" placeholder="닉네임" >
-                            <span id="chkNickName"></span>
-                            <p class="joinChkmsg" id="nickNameComment"></p>
+                            <input type="text" id="nickName" name="nickName" class="inputStyle" placeholder="닉네임">
+                            <p class="joinChkmsg" id="nickNameComment"></p> 
+                            <span id="chknickName"></span>
                         </div>
                         <div>
                             <label for="youBirth"></label>
-                            <input type="text" id="youBirth" name="youBirth" class="inputStyle" placeholder="생년월일" >
-                            <p class="joinChkmsg" id="youBirthComment"></p>
+                            <input type="text" id="youBirth" name="youBirth" class="inputStyle" placeholder="생년월일">
+                            
                         </div>
                         <div> 
                             <label for="youGender"></label>
-                            <select type="text" id="youGender" name="youGender" class="inputStyle" placeholder="성별" >
+                            <select type="text" id="youGender" name="youGender" class="inputStyle" placeholder="성별">
                                 <option value="">성별 선택</option>
                                 <option value="남">남</option>
                                 <option value="여">여</option>
@@ -86,38 +87,26 @@
         </div> 
     </main>
     <!-- main -->
-    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         function joinChecks(){
-            // 이메일 유효성 검사
-            // if($("#memberID").val() == ''){
-            //     $("#memberIDComment").text("* 이메일을 입력해주세요!");
-            //     $("#memberID").focus();
-            //     return false;
-            // }
-            // let getYouEmail =  RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i);
-            // if(!getYouEmail.test($("#memberID").val())){
-            //     $("#memberIDComment").text("* 이메일 형식에 맞게 작성해주세요!");
-            //     $("#memberID").val('');
-            //     $("#memberID").focus();
-            //     return false;
-            // }
-
-            let getmemberID =  RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([\-.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i);
+            // 아이디 유효성 검사
             if($("#memberID").val() == ''){
                 $("#memberIDComment").text("* 아이디를 입력해주세요!");
-                $("#memberIDComment").addClass("red");
                 $("#memberID").focus();
-                return false;
-            }else if(!getmemberID.test($("#memberID").val())){
-                $("#memberIDComment").text("* 아이디 형식에 맞게 작성해주세요!");
-                $("#memberIDComment").removeClass("green");
                 $("#memberIDComment").addClass("red");
+                return false;
+            }
+            let getmemberID =  RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([\-.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i);
+            if(!getmemberID.test($("#memberID").val())){
+                $("#memberIDComment").text("* 아이디 형식에 맞게 작성해주세요!");
                 $("#memberID").val('');
                 $("#memberID").focus();
+                $("#memberIDComment").removeClass("green");
+                $("#memberIDComment").addClass("red");
                 return false;
-            }else{
-                $("#memberIDComment").text("* 사용가능합니다!");
+            } else {
+                $("#memberIDComment").text("* 사용 가능한 아이디 입니다!");
                 $("#memberIDComment").removeClass("red");
                 $("#memberIDComment").addClass("green");
             }
@@ -149,28 +138,27 @@
                 $("#youPassComment").removeClass("green");
                 $("#youPassComment").addClass("red");
                 return false;
-            }else{
-                $("#youPassComment").text("* 사용가능합니다!");
+            } else {
+                $("#youPassComment").text("* 사용 가능한 비밀번호 입니다!");
                 $("#youPassComment").removeClass("red");
                 $("#youPassComment").addClass("green");
             }
-
             // 비밀번호 확인 유효성 검사
             if($("#youPassC").val() == ''){
-                $("#youPassCComment").text("* 비밀번호를 똑같이 다시 한번 입력해주세요!");
-                $("#youPassC").focus();
-                $("#youPassCComment").addClass("red");
-                return false;
+            $("#youPassCComment").text("* 확인 비밀번호를 입력해주세요!");
+            $("#youPassC").focus();
+            $("#youPassCComment").removeClass("green");
+            $("#youPassCComment").addClass("red");
+            return false;
             }
-
             // 비밀번호 동일한지 체크
             if($("#youPass").val() !== $("#youPassC").val()){
                 $("#youPassCComment").text("* 비밀번호가 일치하지 않습니다.");
-                $("#youPassC").focus();
+                $("#youPassCComment").removeClass("green");
                 $("#youPassCComment").addClass("red");
                 return false;
-            }else{
-                $("#youPassCComment").text("* 일치합니다!");
+            } else {
+                $("#youPassCComment").text("* 비밀번호가 일치 합니다!");
                 $("#youPassCComment").removeClass("red");
                 $("#youPassCComment").addClass("green");
             }
@@ -179,6 +167,7 @@
             if($("#youName").val() == ''){
                 $("#youNameComment").text("* 이름을 입력해주세요!");
                 $("#youName").focus();
+                $("#youNameComment").removeClass("green");
                 $("#youNameComment").addClass("red");
                 return false;
             }
@@ -187,10 +176,11 @@
                 $("#youNameComment").text("* 이름은 한글만 사용 가능합니다.");
                 $("#youName").val('');
                 $("#youName").focus();
+                $("#youNameComment").removeClass("green");
                 $("#youNameComment").addClass("red");
                 return false;
-            }else{
-                $("#youNameComment").text("* 사용가능한 이름입니다!");
+            } else {
+                $("#youNameComment").text($("#youName").val()+"님 어서오세요!");
                 $("#youNameComment").removeClass("red");
                 $("#youNameComment").addClass("green");
             }
@@ -199,6 +189,7 @@
             if($("#youPhone").val() == ''){
                 $("#youPhoneComment").text("* 연락처를 입력해주세요!");
                 $("#youPhone").focus();
+                $("#youPhoneComment").removeClass("green");
                 $("#youPhoneComment").addClass("red");
                 return false;
             }
@@ -207,39 +198,43 @@
                 $("#youPhoneComment").text("* 휴대폰 번호가 정확하지 않습니다.(000-0000-0000)");
                 $("#youPhone").val('');
                 $("#youPhone").focus();
+                $("#youPhoneComment").removeClass("green");
+                $("#youPhoneComment").addClass("red");
                 return false;
-            }else{
-                $("#youPhoneComment").text("* 사용가능한 번호입니다!");
+            } else {
+                $("#youPhoneComment").text("* 형식이 맞습니다.");
                 $("#youPhoneComment").removeClass("red");
                 $("#youPhoneComment").addClass("green");
             }
-
-            // 닉네임 유효성 검사
+            
+            닉네임 유효성 검사
             if($("#nickName").val() == ''){
                 $("#nickNameComment").text("* 닉네임을 입력해주세요!");
                 $("#nickName").focus();
+                $("#nickNameComment").removeClass("green");
                 $("#nickNameComment").addClass("red");
                 return false;
             }
-            let getYouNick = RegExp(/^[가-힣|0-9]+$/);
-            if(!getYouNick.test($("#nickName").val())){
+            let getnickName = RegExp(/^[가-힣|0-9]+$/);
+            if(!getnickName.test($("#nickName").val())){
                 $("#nickNameComment").text("* 닉네임은 한글 또는 숫자만 사용 가능합니다.");
                 $("#nickName").val('');
                 $("#nickName").focus();
+                $("#nickNameComment").removeClass("green");
                 $("#nickNameComment").addClass("red");
                 return false;
-            }else{
-                $("#nickNameComment").text("* 사용가능한 닉네임입니다!");
+            } else {
+                $("#nickNameComment").text("* 사용 가능한 닉네임 입니다.");
                 $("#nickNameComment").removeClass("red");
                 $("#nickNameComment").addClass("green");
             }
-
-
-
+            
+            
             // 생년월일 유효성 검사
             if($("#youBirth").val() == ''){
                 $("#youBirthComment").text("* 생년월일을 입력해주세요!");
                 $("#youBirth").focus();
+                $("#youBirthComment").removeClass("green");
                 $("#youBirthComment").addClass("red");
                 return false;
             }
@@ -248,15 +243,15 @@
                 $("#youBirthComment").text("* 생년월일 형식이 정확하지 않습니다.(YYYY-MM-DD)");
                 $("#youBirth").val('');
                 $("#youBirth").focus();
+                $("#youBirthComment").removeClass("green");
                 $("#youBirthComment").addClass("red");
                 return false;
-            }else{
-                $("#youBirthComment").text("* 맞는형식입니다!");
+            } else {
+                $("#youBirthComment").text("* 형식에 맞습니다.");
                 $("#youBirthComment").removeClass("red");
                 $("#youBirthComment").addClass("green");
             }
-
-
+            
             return false;
         }
     </script>

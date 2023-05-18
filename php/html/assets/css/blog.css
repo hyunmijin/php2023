@@ -54,7 +54,6 @@
 .blog__aside .cate {
     border-top: 2px solid var(--color__black);
     margin-bottom: 50px;
-
 }
 
 .blog__aside .cate h4 {
@@ -63,7 +62,35 @@
     color: var(--color__white);
     padding: 0 4px 2px 4px;
 }
+.blog__aside .cate ul {
+    margin: 10px 0;
 
+}
+.blog__aside .cate ul li {
+    position: relative;
+    padding-left: 20px;
+}
+.blog__aside .cate ul li a{
+    line-height: 1.6;
+}
+.blog__aside .cate ul li a:hover {
+    text-decoration: underline;
+    text-underline-position: under;
+}
+.blog__aside .cate ul li::before {
+    content: ''; 
+    width: 10px;
+    height: 10px;
+    background-color: var(--color__black);
+    position: absolute;
+    left: 0;
+    top: 9px;
+    transition: all 0.4s;
+}
+.blog__aside .cate ul li:hover::before {
+    border-radius: 50%;
+    background-color: #dff07e;
+}
 .bolg__search {
     text-align: center;
     padding: 100px 0;
@@ -74,13 +101,26 @@
 .bolg__search .search {
     margin-top: 50px;
 }
-.bolg__search .search button {}
 .cards__inner {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-
+.cards__inner.row {
+    margin-top: -100px;
+}
+.cards__inner.row > .card {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.cards__inner.row > .card  .card__img {
+    width: 30%;
+}
+.cards__inner.row > .card  .card__title {
+    width: 67%;
+}
 /* bolg__title */
 .bolg__title {
     background: url(../img/Frame\ 18@2x.jpg) no-repeat center; 

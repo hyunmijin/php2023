@@ -42,11 +42,10 @@
         </div>
         <div class="bolg__inner btStyle">
             <div class="left">
-
                 <div class="blog__wrap">
                     <h2>All Posts</h2>
                     <div class="cards__inner col3 line3">
-                        <div class="card">
+                        <!-- <div class="card">
                             <figure class="card__img">
                                 <source
                                 srcset=".../html/assets/img/Frame 12.jpg, ../html/assets/img/Frame 12.jpg 2x, ../html/assets/img/Frame 12.jpg 3x" />
@@ -60,127 +59,29 @@
                                 <span class="author">jin</span>
                                 <span class="date">2023.04.03</span>
                             </div>
-                        </div>
-                        <div class="card">
-                            <figure class="card__img">
-                                <source
-                                srcset=".../html/assets/img/Frame 19.jpg, ../html/assets/img/Frame 19.jpg 2x, ../html/assets/img/Frame 19.jpg 3x" />
-                            <img src="../html/assets/img/Frame 19.jpg" alt="소개이미지">
-                            </figure>
-                            <div class="card__title"> 
-                                <h3>팀워크와 소통 능력 향상</h3>
-                                <p>개발자는 혼자서 일하는 경우가 드뭅니다. 대부분의 경우 팀을 이루어 프로젝트를 수행하게 됩니다. 따라서, 팀원과의 원활한 소통과 협력이 필수적입니다.</p>
-                            </div>
-                            <div class="card__info">
-                                <span class="author">jin</span>
-                                <span class="date">2023.04.03</span>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <figure class="card__img">
-                                <source
-                                srcset=".../html/assets/img/Frame 17.jpg, ../html/assets/img/Frame 17.jpg 2x, ../html/assets/img/Frame 17.jpg 3x" />
-                            <img src="../html/assets/img/Frame 17.jpg" alt="소개이미지">
-                            </figure>
-                            <div class="card__title"> 
-                                <h3>코드 가독성 및 유지보수성 고려</h3>
-                                <p>개발자가 작성한 코드는 다른 개발자들이 이해하고 유지보수할 수 있어야 합니다. 따라서, 코드 가독성과 유지보수성을 고려하여 코드를 작성해야 합니다.</p>
-                            </div>
-                            <div class="card__info">
-                                <span class="author">jin</span>
-                                <span class="date">2023.04.03</span>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <figure class="card__img">
-                                <source
-                                srcset=".../html/assets/img/Frame 15.jpg, ../html/assets/img/Frame 15.jpg 2x, ../html/assets/img/Frame 15.jpg 3x" />
-                            <img src="../html/assets/img/Frame 15.jpg" alt="소개이미지">
-                            </figure>
-                            <div class="card__title"> 
-                                <h3>문제 해결 능력</h3>
-                                <p>프로젝트를 진행하다 보면 다양한 문제가 발생할 수 있습니다. 개발자는 이러한 문제를 빠르게 파악하고, 효과적인 문제 해결 방안을 찾아내야 합니다.</p>
-                            </div>
-                            <div class="card__info">
-                                <span class="author">jin</span>
-                                <span class="date">2023.04.03</span>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <figure class="card__img">
-                                <source
-                                srcset=".../html/assets/img/Frame 15.jpg, ../html/assets/img/Frame 15.jpg 2x, ../html/assets/img/Frame 15.jpg 3x" />
-                            <img src="../html/assets/img/Frame 15.jpg" alt="소개이미지">
-                            </figure>
-                            <div class="card__title"> 
-                                <h3>문제 해결 능력</h3>
-                                <p>프로젝트를 진행하다 보면 다양한 문제가 발생할 수 있습니다. 개발자는 이러한 문제를 빠르게 파악하고, 효과적인 문제 해결 방안을 찾아내야 합니다.</p>
-                            </div>
-                            <div class="card__info">
-                                <span class="author">jin</span>
-                                <span class="date">2023.04.03</span>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <figure class="card__img">
-                                <source
-                                srcset=".../html/assets/img/Frame 15.jpg, ../html/assets/img/Frame 15.jpg 2x, ../html/assets/img/Frame 15.jpg 3x" />
-                            <img src="../html/assets/img/Frame 15.jpg" alt="소개이미지">
-                            </figure>
-                            <div class="card__title"> 
-                                <h3>문제 해결 능력</h3>
-                                <p>프로젝트를 진행하다 보면 다양한 문제가 발생할 수 있습니다. 개발자는 이러한 문제를 빠르게 파악하고, 효과적인 문제 해결 방안을 찾아내야 합니다.</p>
-                            </div>
-                            <div class="card__info">
-                                <span class="author">jin</span>
-                                <span class="date">2023.04.03</span>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <figure class="card__img">
-                                <source
-                                srcset=".../html/assets/img/Frame 15.jpg, ../html/assets/img/Frame 15.jpg 2x, ../html/assets/img/Frame 15.jpg 3x" />
-                            <img src="../html/assets/img/Frame 15.jpg" alt="소개이미지">
-                            </figure>
-                            <div class="card__title"> 
-                                <h3>문제 해결 능력</h3>
-                                <p>프로젝트를 진행하다 보면 다양한 문제가 발생할 수 있습니다. 개발자는 이러한 문제를 빠르게 파악하고, 효과적인 문제 해결 방안을 찾아내야 합니다.</p>
-                            </div>
-                            <div class="card__info">
-                                <span class="author">jin</span>
-                                <span class="date">2023.04.03</span>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <figure class="card__img">
-                                <source
-                                srcset=".../html/assets/img/Frame 15.jpg, ../html/assets/img/Frame 15.jpg 2x, ../html/assets/img/Frame 15.jpg 3x" />
-                            <img src="../html/assets/img/Frame 15.jpg" alt="소개이미지">
-                            </figure>
-                            <div class="card__title"> 
-                                <h3>문제 해결 능력</h3>
-                                <p>프로젝트를 진행하다 보면 다양한 문제가 발생할 수 있습니다. 개발자는 이러한 문제를 빠르게 파악하고, 효과적인 문제 해결 방안을 찾아내야 합니다.</p>
-                            </div>
-                            <div class="card__info">
-                                <span class="author">jin</span>
-                                <span class="date">2023.04.03</span>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <figure class="card__img">
-                                <source
-                                srcset=".../html/assets/img/Frame 15.jpg, ../html/assets/img/Frame 15.jpg 2x, ../html/assets/img/Frame 15.jpg 3x" />
-                            <img src="../html/assets/img/Frame 15.jpg" alt="소개이미지">
-                            </figure>
-                            <div class="card__title"> 
-                                <h3>문제 해결 능력</h3>
-                                <p>프로젝트를 진행하다 보면 다양한 문제가 발생할 수 있습니다. 개발자는 이러한 문제를 빠르게 파악하고, 효과적인 문제 해결 방안을 찾아내야 합니다.</p>
-                            </div>
-                            <div class="card__info">
-                                <span class="author">jin</span>
-                                <span class="date">2023.04.03</span>
-                            </div>
-                        </div>
+                        </div> -->
+<?php
+    $sql = "SELECT * FROM blog WHERE blogDElete = 0 ORDER BY blogID DESC";
+    $result = $connect -> query($sql);
+?>
+    <?php foreach($result as $blog){ ?>
+        <div class="card">
+            <figure class="card__img">
+                <a href="blogView.php?blogID=<?=$blog['blogID']?>">
+                    <img src="../assets/blog/<?=$blog['blogImgFile']?>" alt="<?=$blog['blogTitle']?>">
+                </a>
+            </figure>
+            <div class="card__title"> 
+                <h3><?=$blog['blogTitle']?></h3>
+                <p><?=$blog['blogContents']?></p>
+            </div>
+            <div class="card__info">
+                <span class="author"><?=$blog['blogAuthor']?></span>
+                <span class="date"><?=date('Y-m-d', $blog['blogRegTime'])?></span>
+            </div>
+        </div>
+    <?php } ?>
+
                     </div>
                 </div>
             </div>

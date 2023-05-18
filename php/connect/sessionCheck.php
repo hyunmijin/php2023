@@ -1,5 +1,9 @@
 <?php
     if(!isset($_SESSION['memberID'])){
-        Header("Location:../login/login.php");
+
+        echo "<script>alert('로그인을 먼저 해야합니다.')</script>";
+        echo "<script>Location.href='../login/login.php'</script>";
+
+        // Header("Location:../login/login.php");
     }
 ?>

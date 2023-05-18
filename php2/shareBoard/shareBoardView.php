@@ -1,6 +1,19 @@
 <?php
     include "../connect/connect.php";
     include "../connect/session.php";
+
+    if(isset($_GET['blogID'])){
+        $blogID = $_GET['blogID'];
+    } else {
+        Header("Location: shareBoard.php");
+    }
+
+    $blogSql = "SELECT * FROM blog WHERE blogID = '$blogID'";
+    $blogResult = $connect -> query($blogSql);
+    $blogInfo = $blogResult -> fetch_array(MYSQLI_ASSOC);
+
+    $sql = "UPDATE blog SET blogView = blogView + 1 WHERE blogID = {$blogID}";
+    $connect -> query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -103,51 +116,30 @@
             <div class="shareboard__inner">
                 <div class="shareboard">
                     <div class="shareboard__view">
-<?php
-    if(isset($_GET['boardID'])) {
-        $boardID = $_GET['boardID'];
-        //보드뷰
-        $sql = "UPDATE board SET boardView = boardView + 1 WHERE boardID = {$boardID}";
-        $connect -> query($sql);
-        // echo $boardID;
-        $sql = "SELECT b.boardContents, b.boardTitle, m.nickName, b.regTime, b.boardView FROM board b JOIN members2 m ON(m.memberID = b.memberID) WHERE b.boardID = {$boardID}";
-        $result = $connect -> query($sql);
-        $count  = $result -> num_rows;
-        if($result && $count == 1){
-            $info = $result -> fetch_array(MYSQLI_ASSOC);
-            // echo "<tr><th>제목</th><td>".$info['boardTitle']."</td></tr>";
-            // echo "<tr><th>등록일</th><td>".date('Y-m-d', $info['regTime'])."</td></tr>";
-            // echo "<tr><th>내용</th><td>".$info['boardContents']."</td></tr>";
-        } else {
-            echo "<script>alert('잘못된경로로 접근하셨습니다.');window.history.back();</script>";
-        }
-    }
-?>
-
                         <div class="img">
-                            <img src="../html/assets/img/shareboardview1.png" alt="공유게시판 이미지1">
+                            <img src="/web2023-PHP/php/assets/blog/<?=$blogInfo['blogImgFile']?>">
                         </div>
                         <div class="text">
                             <div class="profile">
                                 <div class="sec1">
                                     <img src="../html/assets/img/shareboard-profile.png" alt="프로필사진">
-                                    <p><?= $info['nickName']?></p>
+                                    <p><?= $blogInfo['blogAuthor']?></p>
                                 </div>
                                 <div class="sec2">
-                                    <p><?=date('Y-m-d', $info['regTime'])?></p>
+                                    <p><?=date('Y-m-d', $blogInfo['blogRegTime'])?></p>
                                 </div>
                             </div>
                             <div class="title">
-                                <h2><?=$info['boardTitle']?></h2>
+                                <h2><?=$blogInfo['blogTitle']?></h2>
                             </div>
                             <div class="desc">
-                                <p><?=$info['boardContents']?></p>
+                                <p><?=$blogInfo['blogContents']?></p>
                             </div>
                         </div>
                     </div>
                     <div class="view__num">
                         <div class="num">
-                            <h3>조회수<span><?=$info['boardView']?></span></h3>
+                            <h3>조회수<span><?=$blogInfo['blogView']?></span></h3>
                             <h4>좋아요 💜 <span> 10명이 좋아합니다</span> </h4>
                         </div>
                         <div class="edit">
@@ -160,7 +152,7 @@
 
                     <div class="shareboard_list">
                         <div class="list">
-                            <!-- <a href="#">
+                            <a href="#">
                                 <img src="../html/assets/img/shareboardview2.png" alt="이전게시물1">
                             </a>
                             <a href="#">
@@ -177,7 +169,7 @@
                             </a>
                             <a href="#">
                                 <img src="../html/assets/img/shareboardview7.png" alt="이전게시물6">
-                            </a> -->
+                            </a>
                         </div>
                         <div class="btn">
                             <a href="shareBoard.php" class="btnStyle6">목록보기</a>

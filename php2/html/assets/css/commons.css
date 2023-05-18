@@ -44,6 +44,11 @@ body.windows {
     max-width: 480px;
     margin: 0 auto;
 }
+.container2 {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
 
 /* border style */
 .bmStyle {

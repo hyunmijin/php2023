@@ -2,11 +2,11 @@
     include "../connect/connect.php";
     include "../connect/session.php";
 
-    $sql = "SELECT count(boardID) FROM board";
-    $result = $connect -> query($sql);
+    // $sql = "SELECT count(boardID) FROM board";
+    // $result = $connect -> query($sql);
 
-    $boardTotalCount = $result -> fetch_array(MYSQLI_ASSOC);
-    $boardTotalCount = $boardTotalCount['count(boardID)'];
+    // $boardTotalCount = $result -> fetch_array(MYSQLI_ASSOC);
+    // $boardTotalCount = $boardTotalCount['count(boardID)'];
 ?>
 
 <!DOCTYPE html>
@@ -106,12 +106,12 @@
             display: inline-block;
             width: 15vw;
             min-width: 251px;
-            height: 400px;
+            height: 250px;
             margin: 0px 0.5vw 250px 0.4vw;
             background-color: rgba(247, 151, 162, 0.07);
             /* border: 1px solid #F797A2; */
         }
-        .list__img1 {background: url(../html/assets/img/community10.png) 30%; width: 100%; height: 100%;}
+        /* .list__img1 {background: url(../html/assets/img/shareboardview1.png) 30%; width: 100%; height: 100%;}
         .list__img2 {background: url(../html/assets/img/community11.png) 50%; width: 100%; height: 100%;}
         .list__img3 {background: url(../html/assets/img/community12.png) 40%; width: 100%; height: 100%;}
         .list__img4 {background: url(../html/assets/img/community13.png) 70%; width: 100%; height: 100%;}
@@ -121,7 +121,7 @@
         .list__img8 {background: url(../html/assets/img/community17.png) 60%; width: 100%; height: 100%;}
         .list__img9 {background: url(../html/assets/img/community18.png) 40%; width: 100%; height: 100%;}
         .list__img10 {background: url(../html/assets/img/community19.png) 70%; width: 100%; height: 100%;}
-        .list__img11 {background: url(../html/assets/img/community20.png) 80%; width: 100%; height: 100%;}
+        .list__img11 {background: url(../html/assets/img/community20.png) 80%; width: 100%; height: 100%;} */
        
         .list:nth-last-child(1) {
             /* margin-bottom: 100px; */
@@ -146,73 +146,41 @@
         <div class="section__img">
             <img src="../html/assets/img/boardimg_02.png" alt="">
         </div>
+        <div class="btn">
+            <div></div>
+        <?php if(isset($_SESSION['memberID'])){ ?>
+            <button type="submit" class="btnStyle4"><a href="shareBoardWrite.php">글쓰기</a></button>
+        <?php } ?>
+        </div>
+
         <!-- <h2>공유 게시판</h2> -->
         <div class="list">
             <!-- list__each -->
 
 <?php
-    if(isset($_GET['page'])){
-        $page = (int) $_GET['page'];
-    } else {
-        $page = 1;
-    }
-
-    $viewNum = 10;
-    $viewLimit = ($viewNum * $page) - $viewNum; 
-
-    //   1~20 DESC LIMIT 0, 20 -> page1 (viewNum * 1) - viewNum
-    // 21~40 DESC LIMIT 20, 20 -> page2 (viewNum * 2) - viewNum
-    // 40~60 DESC LIMIT 40, 20 -> page3 (viewNum * 3) - viewNum
-    // 60~80 DESC LIMIT 60, 20 -> page4 (viewNum * 4) - viewNum
-    $sql = "SELECT b.boardID, b.boardContents, b.boardTitle, m.nickName, b.regTime FROM board b JOIN members2 m ON(m.memberID = b.memberID) ORDER BY boardID DESC LIMIT {$viewLimit}, {$viewNum}";
-    
-    // $sql = "SELECT boardID, boardTitle, regTime FROM board ORDER BY boardID DESC LIMIT {$viewLimit}, {$viewNum}";
+    $sql = "SELECT * FROM blog WHERE blogDElete = 0 ORDER BY blogID DESC";
     $result = $connect -> query($sql);
-    
-
-    if($result){
-        $count = $result -> num_rows;
-
-        if($count > 0){
-            for($i=1; $i<$count; $i++){
-                $info = $result -> fetch_array(MYSQLI_ASSOC);
-
-                echo "<div class='list__each'>";
-                // echo "<div class='list__img1'>";
-                // echo "<a href='../shareBoard/ShareboardView.php'><div class='list__img1'></div></a>";
-                echo "<a href='../shareBoard/ShareboardView.php?boardID={$info['boardID']}'><div class='list__img1'></div></a>";
-                // echo "<td><a href='boardView.php?boardID={$info['boardID']}'>".$info['boardTitle']."</td>";
-                // echo "</div>";
-                echo "<div class='list__text'>";
-
-
-                echo "<div class='list__name'> <b>".$info['nickName']."</b><small>".date('Y-m-d', $info['regTime'])."</small></div>";
-                echo "<h3 class='title'>".$info['boardTitle']."</h3>";
-                echo "<p class='content'>".$info['boardContents']."</p>";
-                
-
-                echo "</div>";
-                echo "</div>";
-            }
-        } else {
-            echo "<tr><td colspan='4'>게시글이 없습니다.</td></tr>";
-        }
-    }
 ?>
-            <!-- <div class="list__each">
-                <div class="list__img1">
+    <?php foreach($result as $blog){ ?>
+        <div class="list__each">
+                <div class="list__img">
+                    <a href="ShareboardView.php?blogID=<?=$blog['blogID']?>">
+                        <img src="/web2023-PHP/php/assets/blog/<?=$blog['blogImgFile']?>" alt="<?=$blog['blogTitle']?>">
+                    </a>
                 </div>
 
                 <div class="list__text">
 
-                    <div class="list__name"><b>해린남편</b><small>5/11</small></div>
+                    <div class="list__name"><b><?=$blog['blogAuthor']?></b><small><?=date('Y-m-d', $blog['blogRegTime'])?></small></div>
 
-                    <h3 class="title">피부를 지키려면 학원 퇴근!</h3>
-                    <p class="content">퇴근 시켜주세요. 집에서 공부 할게요...</p>
+                    <h3 class="title"><?=$blog['blogTitle']?></h3>
+                    <p class="content"><?=$blog['blogContents']?></p>
                     
                 </div>
 
-            </div> -->
+            </div>
+    <?php } ?>
+
             <!-- //list__each -->
         </div>
     </div>

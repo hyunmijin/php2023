@@ -18,6 +18,8 @@
     display: flex;
     margin-bottom: 20px;
     justify-content: space-between;
+    height: 488px;
+    margin-bottom: 80px;
 }
 
 .shareboard__view .img {
@@ -27,15 +29,22 @@
 .shareboard__view img {
     width: 100%;
 }
+.shareboard__view .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 /* text */
 .shareboard__view .text {
     width: 48%;
+    height: 100%;
     /* background-color: #ccc; */
 }
 
 .shareboard__view .text .profile {
     width: 100%;
+    height: 25px;
     display: flex;
     justify-content: space-between;
     background-color: #fff;
@@ -59,19 +68,23 @@
 .shareboard__view .title h2 {
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 5%;
-    margin-top: 10%;
+    margin-bottom: 6%;
+    /* margin-top: 15%; */
+    height: 55px;
 }
 
 /* desc */
 .shareboard__view .desc {
-    height: 360px;
+    max-height: 330px;
+    min-height: 354px;
+    overflow: auto;
     overflow-y: scroll;
     background-color: #f797a24f;
     padding: 20px;
 }
 
 .shareboard__view .desc::-webkit-scrollbar-track {
+    max-height: 360px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 5px;
     background-color: #FAFAFA;
@@ -246,9 +259,54 @@
     font-size: 12px;
 }
 
-.view__num .edit {}
 
 .view__num .edit a {
     /* background-color: #ccc; */
     padding-bottom: 20px;
+}
+
+.list__inner .btn {
+    display: flex;
+    justify-content: space-between;
+    /* margin-top: -30px; */
+}
+
+.list__inner .btn a {
+    color: #fff;
+}
+
+
+.board__write {
+    padding: 50px 0 100px;
+    width: 100%;
+}
+.board__write label {
+    width: 100%;
+    font-size: 20px;
+    display: block;
+    margin-bottom: 10px;
+}
+.board__write .mt30 input {
+    border-radius: 0;
+    margin-bottom: 50px;
+}
+.board__write textarea {
+    padding: 2em;
+    resize: none;
+}
+.board__write .mt30 button {
+    width: 10%;
+    float: right;
+    margin-top: 10px;
+}
+
+/* 이미지 사이즈 */
+.list .list__each .list__img {
+    width: 100%;
+    height:100%;
+}
+.list__each .list__img img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
 }

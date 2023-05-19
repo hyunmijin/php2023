@@ -158,10 +158,17 @@
             <!-- list__each -->
 
 <?php
-    $sql = "SELECT * FROM blog WHERE blogDElete = 0 ORDER BY blogID DESC";
+    // $sql = "SELECT * FROM blog WHERE blogDElete = 0 ORDER BY blogID DESC";
+    // $result = $connect -> query($sql);
+
+    $sql = "SELECT b.blogID, b.blogContents, b.blogImgFile,  b.blogTitle, m.youName, b.blogRegTime, b.blogView ,m.nickName FROM blog b JOIN members2 m ON b.memberID = m.memberID ORDER BY blogID DESC;";
+            
+    // echo $sql;
+    // // $sql = "SELECT b.blogContents, b.blogTitle, m.youName, b.regTime, b.blogView ,m.nickName FROM blog b JOIN members2 m ON(m.memberID = b.memberID) WHERE b.blogID = {$blogID}";
     $result = $connect -> query($sql);
 ?>
-    <?php foreach($result as $blog){ ?>
+    <?php foreach($result as $blog){?>
+        
         <div class="list__each">
                 <div class="list__img">
                     <a href="ShareboardView.php?blogID=<?=$blog['blogID']?>">
@@ -171,7 +178,7 @@
 
                 <div class="list__text">
 
-                    <div class="list__name"><b><?=$blog['blogAuthor']?></b><small><?=date('Y-m-d', $blog['blogRegTime'])?></small></div>
+                    <div class="list__name"><b><?=$blog['nickName']?></b><small><?=date('Y-m-d', $blog['blogRegTime'])?></small></div>
 
                     <h3 class="title"><?=$blog['blogTitle']?></h3>
                     <p class="content"><?=$blog['blogContents']?></p>

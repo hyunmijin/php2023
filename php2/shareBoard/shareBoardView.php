@@ -2,6 +2,11 @@
     include "../connect/connect.php";
     include "../connect/session.php";
 
+    // echo "<pre>";
+    // var_dump($_SESSION);
+    // echo "</pre>";
+
+
     if(isset($_GET['blogID'])){
         $blogID = $_GET['blogID'];
     } else {
@@ -12,8 +17,20 @@
     $blogResult = $connect -> query($blogSql);
     $blogInfo = $blogResult -> fetch_array(MYSQLI_ASSOC);
 
-    $sql = "UPDATE blog SET blogView = blogView + 1 WHERE blogID = {$blogID}";
-    $connect -> query($sql);
+    //하나의 값만 불러옴
+    //셰어보드값불러오는 걸 보면서 수정해야됨
+
+    //아래도 같음
+
+   
+
+    $sql = "SELECT b.blogID, b.blogContents, b.blogImgFile,  b.blogTitle, m.youName, b.blogRegTime, b.blogView ,m.nickName FROM blog b JOIN members2 m ON b.memberID = m.memberID ORDER BY blogID DESC;";
+    $Result = $connect -> query($sql);
+    $blog = $Result -> fetch_array(MYSQLI_ASSOC);
+
+    echo "<pre>";
+    var_dump($blog);
+    echo "<pre>";
 ?>
 
 <!DOCTYPE html>
@@ -123,7 +140,7 @@
                             <div class="profile">
                                 <div class="sec1">
                                     <img src="../html/assets/img/shareboard-profile.png" alt="프로필사진">
-                                    <p><?= $blogInfo['blogAuthor']?></p>
+                                    <p><?= $blog['nickName']?></p>
                                 </div>
                                 <div class="sec2">
                                     <p><?=date('Y-m-d', $blogInfo['blogRegTime'])?></p>
@@ -151,11 +168,12 @@
     
 
                     <div class="shareboard_list">
+<?php foreach($blogInfo as $info){?>
                         <div class="list">
-                            <a href="#">
-                                <img src="../html/assets/img/shareboardview2.png" alt="이전게시물1">
+                            <a href="ShareboardView.php?blogID=<?=$info['blogID']?>">
+                                <img src="/web2023-PHP/php/assets/blog/<?=$info['blogImgFile']?>" alt="<?=$info['blogTitle']?>">
                             </a>
-                            <a href="#">
+                            <!-- <a href="#">
                                 <img src="../html/assets/img/shareboardview3.png" alt="이전게시물2">
                             </a>
                             <a href="#">
@@ -169,11 +187,12 @@
                             </a>
                             <a href="#">
                                 <img src="../html/assets/img/shareboardview7.png" alt="이전게시물6">
-                            </a>
+                            </a> -->
                         </div>
+<?php } ?>
                         <div class="btn">
                             <a href="shareBoard.php" class="btnStyle6">목록보기</a>
-                        </div>
+                        </div>                    
                     </div>
                     <div class="shareboard_comment">
                         <h4>댓글</h4>

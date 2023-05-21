@@ -29,7 +29,7 @@
         <!-- //header -->
         <div id="board__header" class="mt100">
             <div><a href="trendsBoard.php">뷰티트렌드</a></div> <!-- news-->
-            <div><a href="shareBoard.php">공유게시판</a></div> <!-- share-->
+            <div><a href="../shareBoard/shareBoard.php">공유게시판</a></div> <!-- share-->
             <div class="active"><a href="boardNotice.php">공지사항</a></div> <!-- notice-->
             <div><a href="FAQ.php">FAQ</a></div> <!-- faq-->
         </div>

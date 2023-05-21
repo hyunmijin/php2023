@@ -22,15 +22,16 @@
 
     //아래도 같음
 
-   
+    $sql = "UPDATE blog SET blogView = blogView + 1 WHERE blogID = {$blogID}";
+    $connect -> query($sql);
 
     $sql = "SELECT b.blogID, b.blogContents, b.blogImgFile,  b.blogTitle, m.youName, b.blogRegTime, b.blogView ,m.nickName FROM blog b JOIN members2 m ON b.memberID = m.memberID ORDER BY blogID DESC;";
     $Result = $connect -> query($sql);
     $blog = $Result -> fetch_array(MYSQLI_ASSOC);
 
-    echo "<pre>";
-    var_dump($blog);
-    echo "<pre>";
+    // echo "<pre>";
+    // var_dump($blog);
+    // echo "<pre>";
 ?>
 
 <!DOCTYPE html>
@@ -160,36 +161,68 @@
                             <h4>좋아요 💜 <span> 10명이 좋아합니다</span> </h4>
                         </div>
                         <div class="edit">
-                            <a href="">수정  /</a>
-                            <a href="">삭제</a>
+                            <a href="shareBoardModify.php?blogID=<?=$_GET['blogID']?>">수정 /</a>
+                            <a href="shareBoardRemove.php?blogID=<?=$_GET['blogID']?>" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+                            <!-- <a href="">삭제</a> -->
                         </div>
                     </div>
 
     
 
                     <div class="shareboard_list">
-<?php foreach($blogInfo as $info){?>
                         <div class="list">
-                            <a href="ShareboardView.php?blogID=<?=$info['blogID']?>">
-                                <img src="/web2023-PHP/php/assets/blog/<?=$info['blogImgFile']?>" alt="<?=$info['blogTitle']?>">
-                            </a>
-                            <!-- <a href="#">
-                                <img src="../html/assets/img/shareboardview3.png" alt="이전게시물2">
-                            </a>
-                            <a href="#">
-                                <img src="../html/assets/img/shareboardview4.png" alt="이전게시물3">
-                            </a>
-                            <a href="#">
-                                <img src="../html/assets/img/shareboardview5.png" alt="이전게시물4">
-                            </a>
-                            <a href="#">
-                                <img src="../html/assets/img/shareboardview6.png" alt="이전게시물5">
-                            </a>
-                            <a href="#">
-                                <img src="../html/assets/img/shareboardview7.png" alt="이전게시물6">
-                            </a> -->
+                        <?php
+    // $sql = "SELECT * FROM blog WHERE blogDElete = 0 ORDER BY blogID DESC";
+    // $result = $connect -> query($sql);
+
+    $sql = "SELECT b.blogID, b.blogContents, b.blogImgFile,  b.blogTitle, m.youName, b.blogRegTime, b.blogView ,m.nickName FROM blog b JOIN members2 m ON b.memberID = m.memberID ORDER BY blogID DESC;";
+            
+    // echo $sql;
+    // // $sql = "SELECT b.blogContents, b.blogTitle, m.youName, b.regTime, b.blogView ,m.nickName FROM blog b JOIN members2 m ON(m.memberID = b.memberID) WHERE b.blogID = {$blogID}";
+    $result = $connect -> query($sql);
+
+?>
+<?php
+$count = 0;
+$currentIndex = 0; // 현재 게시물의 인덱스
+$targetIndex = -1; // 현재 게시물의 인덱스를 찾기 위한 변수
+$currentBlogID = $_GET['blogID'];
+
+// 현재 게시물의 인덱스를 찾습니다
+foreach ($result as $index => $blogInfo) {
+    if ($blogInfo['blogID'] == $currentBlogID) {
+        $targetIndex = $index;
+        break;
+    }
+}
+
+// 현재 게시물 앞뒤로 2개씩 게시물을 가져옵니다
+foreach ($result as $index => $blogInfo) {
+    // 현재 게시물의 앞뒤 2개를 가져옵니다
+    if ($index >= $targetIndex - 2 && $index <= $targetIndex + 2) {
+        // 현재 게시물은 건너뜁니다
+        if ($index == $targetIndex) {
+            continue;
+        }
+        
+        // 게시물을 표시합니다
+        if ($count >= 5) {
+            break;
+        }
+        
+        $count++;
+        ?>
+        <a href="ShareboardView.php?blogID=<?=$blogInfo['blogID']?>">
+            <img src="/web2023-PHP/php/assets/blog/<?=$blogInfo['blogImgFile']?>" alt="<?=$info['blogTitle']?>">
+        </a>
+        <?php
+    }
+}
+?>
+
+
+
                         </div>
-<?php } ?>
                         <div class="btn">
                             <a href="shareBoard.php" class="btnStyle6">목록보기</a>
                         </div>                    

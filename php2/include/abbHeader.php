@@ -12,7 +12,7 @@
                 <li><a href="#">메이크업</a></li>
                 <li><a href="#">헤어</a></li>
                 <li><a href="#">바디</a></li>
-                <li><a href="#">커뮤니티</a></li>
+                <li><a href="../shareBoard/shareBoard.php">커뮤니티</a></li>
             </ul>
         </div>
         <div class="logo">
@@ -28,12 +28,12 @@
             <?php
                 if (isset($_SESSION['memberID'])) {
             ?>
-                <li><a href="#">마이페이지</a></li>
+                <li><a href="../myinfo/myInfoModifyinfo.php">마이페이지</a></li>
                 <li><a href="../login/logout.php">로그아웃</a></li>
             <?php
             } else {
             ?>
-                <li><a href="#">마이페이지</a></li>
+                <li><a href="../myinfo/myInfoModifyinfo.php">마이페이지</a></li>
                 <li><a href="../login/login.php">로그인</a></li>
             <?php
             }

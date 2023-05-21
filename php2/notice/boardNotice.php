@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입 페이지</title>
+    <title>공지사항</title>
     <!-- CSS -->
     <link rel="stylesheet" href="../html/assets/css/style.css">
     <!-- SCRIPT -->
@@ -105,7 +105,7 @@
         $count = $result -> num_rows;
 
         if($count > 0){
-            for($i=1; $i<$count; $i++){
+            for($i=0; $i<$count; $i++){
                 $info = $result -> fetch_array(MYSQLI_ASSOC);
 
                 echo "<tr>";

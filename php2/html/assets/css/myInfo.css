@@ -127,12 +127,10 @@
     width: calc(97% - 115px);
     background-color: #fff;
     border-radius: 10px;
-    max-height: 500px;
+    min-height: 450px;
     position: relative;
 }
-.info__view.scroll {
-    overflow-y:scroll;
-}
+
 
 .info__view__title {
     width: 100%;
@@ -203,24 +201,38 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+.info__form div .user__phone__inner__chk {
+    /* display: flex; */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    display: none;
+    transition: all 0.5s;
+}
 .inputStyleInfo.youPhone {
     padding-top: 3px;
     margin-bottom: 0px;
-    width: calc(95% - 100px - 32%);
+    width: calc(98% - 150px);
     height: 40px;
 }
 .phonekBtn {
     margin: 0;
-    width: 100px;
+    width: 150px;
     height: 40px;
 }
-.inputStyleInfo.youAgency {
+
+.inputStyleInfo.chkNumber {
     padding-top: 3px;
     margin-bottom: 0px;
-    /* margin-bottom: 0px; */
-    width: 32%;
+    width: calc(68% - 150px);
     height: 40px;
 }
+.inputStyleInfo.chkNumberTimer {
+    padding-top: 3px;
+    margin-bottom: 0px;
+    width: 30%;
+    height: 40px;
+}
+
 .inputStyleInfoRadio {
     height: 40px;
     background-color: #fff;
@@ -281,7 +293,7 @@
     width: inherit;
     height: inherit;
     border-radius: inherit;
-    background:  var(--bg__pink);
+    background:  #fff;
     transform: scale(1.1);
     transition: .3s;
 }

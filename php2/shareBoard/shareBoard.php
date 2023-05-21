@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입 페이지</title>
+    <title>공유게시판</title>
     <style>
         .list__inner {
             width: calc(100% - 35vw);
@@ -166,6 +166,7 @@
     // echo $sql;
     // // $sql = "SELECT b.blogContents, b.blogTitle, m.youName, b.regTime, b.blogView ,m.nickName FROM blog b JOIN members2 m ON(m.memberID = b.memberID) WHERE b.blogID = {$blogID}";
     $result = $connect -> query($sql);
+    // echo $result;
 ?>
     <?php foreach($result as $blog){?>
         

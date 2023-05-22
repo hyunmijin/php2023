@@ -28,6 +28,9 @@
     $sql = "SELECT b.blogID, b.blogContents, b.blogImgFile,  b.blogTitle, m.youName, b.blogRegTime, b.blogView ,m.nickName FROM blog b JOIN members2 m ON b.memberID = m.memberID ORDER BY blogID DESC;";
     $Result = $connect -> query($sql);
     $blog = $Result -> fetch_array(MYSQLI_ASSOC);
+    $commentSql = "SELECT * FROM blogComment WHERE blogID = '$blogID' AND commentDelete = '0' ORDER BY commentID DESC";
+    $commentResult = $connect -> query($commentSql);
+    $commentInfo = $commentResult -> fetch_array(MYSQLI_ASSOC);
 
     // echo "<pre>";
     // var_dump($blog);
@@ -196,9 +199,12 @@ foreach ($result as $index => $blogInfo) {
     }
 }
 
+
+$result = $connect -> query($sql);
 // 현재 게시물 앞뒤로 2개씩 게시물을 가져옵니다
 foreach ($result as $index => $blogInfo) {
     // 현재 게시물의 앞뒤 2개를 가져옵니다
+
     if ($index >= $targetIndex - 2 && $index <= $targetIndex + 2) {
         // 현재 게시물은 건너뜁니다
         if ($index == $targetIndex) {
@@ -212,51 +218,71 @@ foreach ($result as $index => $blogInfo) {
         
         $count++;
         ?>
-        <a href="ShareboardView.php?blogID=<?=$blogInfo['blogID']?>">
-            <img src="/web2023-PHP/php/assets/blog/<?=$blogInfo['blogImgFile']?>" alt="<?=$info['blogTitle']?>">
-        </a>
-        <?php
+                            <a href="ShareboardView.php?blogID=<?=$blogInfo['blogID']?>">
+                                <img src="/web2023-PHP/php/assets/blog/<?=$blogInfo['blogImgFile']?>" alt="<?=$info['blogTitle']?>">
+                            </a>
+                            <?php 
     }
 }
 ?>
-
-
-
                         </div>
                         <div class="btn">
                             <a href="shareBoard.php" class="btnStyle6">목록보기</a>
                         </div>                    
                     </div>
-                    <div class="shareboard_comment">
-                        <h4>댓글</h4>
-                        <div class="view abbStyle abbStyle2">
-                            <img src="../html/assets/img/shareboard-profile2.png" alt="">
-                            <div class="text">
-                                <h6>닉네임</h6>
-                                <p>저도 한번 써봐야겠네요 넘 좋아보여요~!</p>
+                    <div class="blog__comment">
+            <h3>댓글쓰기</h3>
+            <?php
+                foreach($commentResult as $comment){ ?>
+                    <div class="comment__view" id="comment<?=$comment['commentID']?>">
+                        <div class="avatar">
+                            <img src="https://t1.daumcdn.net/tistory_admin/blog/admin/profile_default_06.png" alt="">
+                        </div>
+                        <div class="info">
+                            <span class="nickname"><?=$comment['commentName']?></span>
+                            <span class="date"><?=date('Y-m-d', $comment['regTime'])?></span>
+                            <p class="msg"><?=$comment['commentMsg']?></p>
+                            <!-- 삭제 -->
+                            <div class="comment__delete" style="display: none">
+                                <label for="commentDeletePass" class="blind">비밀번호</label>
+                                <input type="password" id="commentDeletePass" name="commentDeletePass" placeholder="비밀번호">
+                                <button id="commentDeleteCancel">취소</button>
+                                <button id="commentDeleteButton">삭제</button>
                             </div>
-                            <div class="edit">
-                                <a href="">수정  /</a>
-                                <a href="">삭제</a>
+                            <!-- //삭제 -->
+                            <!-- 수정 -->
+                            <div class="comment__modify" style="display: none">
+                                <label for="msg__modify" class="blind">수정 내용</label>
+                                <textarea name="msg__modify" id="msg__modify" cols rows="4" placeholder="수정할 내용을 적어주세요!"></textarea>
+                                <label for="commentModifyPass" class="blind">비밀번호</label>
+                                <input type="password" id="commentModifyPass" name="commentModifyPass" placeholder="비밀번호">
+                                <button id="commentModifyCancel">취소</button>
+                                <button id="commentModifyButton">수정</button>
+                            </div>
+                            <!-- //수정 -->
+                            <div class="del">
+                                <a href="#" class="comment__del__del">삭제</a>
+                                <a href="#" class="comment__del__mod">수정</a>
                             </div>
                         </div>
-                        <div class="white">
-                            <div class="text">
-                                <form>
-                                    <textarea name="boardcomment" id="boardcomment" rows="40"
-                                        class="inputStyle3 board__contents" placeholder="댓글을 입력하세요"></textarea>
-                                </form>
-                            </div>
-                            <div class="end">
-                                <label>
-                                    <input type="checkbox" name="agree">
-                                    비밀글
-                                </label>
-                                <a href="board.html" class="btnStyle6">등록하기 </a>
-                            </div>
-                        </div>
-
                     </div>
+            <?php } ?>
+            <div class="comment__write">
+                <form action="#">
+                    <fieldset>
+                        <legend class="blind">댓글 쓰기</legend>
+                        <label for="commentPass">비밀번호</label>
+                        <input type="password" id="commentPass" name="commentPass" placeholder="비밀번호" required>
+                        <label for="commentName">이름</label>
+                        <input type="text" id="commentName" name="commentName" placeholder="이름" required>
+                        <label for="commentWrite">댓글쓰기</label>
+                        <textarea id="commentWrite" name="commentWrite" rows="4" placeholder="댓글을 써주세요!" maxlength="255" required></textarea>
+                        <button type="button" id="commentWriteBtn" class="btnStyle3 mt10">댓글쓰기</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <!-- //blog__comment -->
                 </div>
 
             </div>
@@ -267,6 +293,82 @@ foreach ($result as $index => $blogInfo) {
     <?php include "../include/footer.php" ?>
 
     <!-- //footer -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        let commentID = "";
+        // 댓글 삭제 버튼
+        $(".comment__del__del").click(function(e){
+            e.preventDefault();
+            // alert("댓글 삭제 버튼 누름");
+            $(this).parent().prev().prev().show();
+            commentID = $(this).parent().parent().parent().attr("id");
+        });
+        // 댓글 삭제 버튼 -> 취소 버튼
+        $("#commentDeleteCancel").click(function(){
+            $(".comment__delete").hide();
+        });
+        // 댓글 삭제 버튼 -> 삭제 버튼
+        $("#commentDeleteButton").click(function(){
+            let number = commentID.replace(/[^0-9]/g, "");
+            if($("#commentDeletePass").val() == ""){
+                alert("댓글 작성시 비밀번호를 작성해주세요!");
+                $("#commentDeletePass").focus();
+            } else {
+                $.ajax({
+                    url: "blogCommentDelete.php",
+                    method: "POST",
+                    dataType: "json",
+                    data: {
+                        "commentPass": $("#commentDeletePass").val(),
+                        "commentID": number,
+                    },
+                    success: function(data){
+                        console.log(data);
+                        if(data.result == "bad"){
+                            alert("비밀번호가 틀렸습니다.!");
+                        } else {
+                            alert("댓글이 삭제되었습니다.");
+                        }
+                        location.reload();
+                    },
+                    error: function(request, status, error){
+                        console.log("request" + request);
+                        console.log("status" + status);
+                        console.log("error" + error);
+                    }
+                })
+            }
+        });
+        // 댓글 쓰기 버튼
+        $("#commentWriteBtn").click(function(){
+            if($("#commentWrite").val() == ""){
+                alert("댓글을 작성해주세요!");
+                $("#commentWrite").focus();
+            } else {
+                $.ajax({
+                    url: "blogCommentWrite.php",
+                    method: "POST",
+                    dataType: "json",
+                    data: {
+                        "blogID": <?=$blogID?>,
+                        "memberID": <?=$memberID?>,
+                        "name": $("#commentName").val(),
+                        "pass": $("#commentPass").val(),
+                        "msg": $("#commentWrite").val(),
+                    },
+                    success: function(data){
+                        console.log(data);
+                        location.reload();
+                    },
+                    error: function(request, status, error){
+                        console.log("request" + request);
+                        console.log("status" + status);
+                        console.log("error" + error);
+                    }
+                })
+            }
+        });
+    </script>
 </body>
 
 </html>

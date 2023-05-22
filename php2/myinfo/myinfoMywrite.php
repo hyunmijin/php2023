@@ -213,9 +213,8 @@
                 echo "<tr>";
                 echo "<td>".${'i'}."</td>";
                 echo "<td><a href='../shareBoard/shareBoardView.php?blogID={$info['blogID']}'>".$info['blogTitle']."</td>";
-                echo "<td>".date('Y-m-d', $info['regTime'])."</td>";
-                echo "<td><a href='../shareBoard/shareBoardModify.php?blogID={$info['blogID']}' class='modifyBtn'>수정</a>/
-                <a href='../shareBoard/shareBoardRemove2.php?blogID={$info['blogID']}' class='modifyBtn' onclick=\"return confirm('정말 삭제하시겠습니까?')\">삭제</a></td>";
+                echo "<td>".date('Y-m-d', $info['blogRegTime'])."</td>";
+                echo "<td><a href='../shareBoard/shareBoardModify.php?blogID={$info['blogID']}' class='modifyBtn'>수정</a>/<a href='../shareBoard/shareBoardRemove2.php?blogID={$info['blogID']}' class='modifyBtn' onclick=\"return confirm('정말 삭제하시겠습니까?')\">삭제</a></td>";
                 
                 
 

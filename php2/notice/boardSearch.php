@@ -25,7 +25,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입 페이지</title>
+    <title>공지사항 검색결과</title>
     <!-- CSS -->
     <link rel="stylesheet" href="../html/assets/css/style.css">
     <!-- SCRIPT -->
@@ -147,9 +147,9 @@
 
     // 첫 페이지로 가기/ 이전 페이지로 가기
     if($page !== 1 && $boardTotalCount !=0 && $page <= $boardTotalCount){
-        echo "<li><a href='boardNotice.php?page=1'>처음으로</a></li>";
+        echo "<li><a href='boardNotice.php?page=1&searchKeyword={$searchKeyword}'>처음으로</a></li>";
         $prevPage = $page - 1;
-        echo "<li><a href='boardNotice.php?page={$prevPage}'>이전</a></li>";
+        echo "<li><a href='boardNotice.php?page={$prevPage}&searchKeyword={$searchKeyword}'>이전</a></li>";
     }
 
     //페이지
@@ -157,13 +157,13 @@
         $active = "";
         if($i == $page) $active = "active";
 
-        echo "<li class='{$active}'><a href='boardNotice.php?page={$i}'>{$i}</a></li>";
+        echo "<li class='{$active}'><a href='boardNotice.php?page={$i}&searchKeyword={$searchKeyword}'>{$i}</a></li>";
     }
     // 마지막 페이지로/ 다음 페이지로
     if($page != $boardTotalCount && $page <= $boardTotalCount){
         $nextPage = $page + 1;
-        echo "<li><a href='boardNotice.php?page={$nextPage}'>다음</a></li>";
-        echo "<li><a href='boardNotice.php?page={$boardTotalCount}'>마지막으로</a></li>";
+        echo "<li><a href='boardNotice.php?page={$nextPage}&searchKeyword={$searchKeyword}'>다음</a></li>";
+        echo "<li><a href='boardNotice.php?page={$boardTotalCount}&searchKeyword={$searchKeyword}'>마지막으로</a></li>";
     }
 ?>
                     </ul>

@@ -7,6 +7,12 @@
     // echo "</pre>";
 
 
+    if(isset($_GET['memberID'])){
+        $memberID = $_GET['memberID'];
+    } else {
+        $memberID =0;;
+    }
+
     if(isset($_GET['blogID'])){
         $blogID = $_GET['blogID'];
     } else {
@@ -25,7 +31,7 @@
     $sql = "UPDATE blog SET blogView = blogView + 1 WHERE blogID = {$blogID}";
     $connect -> query($sql);
 
-    $sql = "SELECT b.blogID, b.blogContents, b.blogImgFile,  b.blogTitle, m.youName, b.blogRegTime, b.blogView ,m.nickName FROM blog b JOIN members2 m ON b.memberID = m.memberID ORDER BY blogID DESC;";
+    $sql = "SELECT b.blogID, b.blogContents, b.blogImgFile,  b.blogTitle, m.youName, b.blogRegTime, b.blogView ,m.nickName ,m.youImgSrc     FROM blog b JOIN members2 m ON b.memberID = m.memberID ORDER BY blogID DESC;";
     $Result = $connect -> query($sql);
     $blog = $Result -> fetch_array(MYSQLI_ASSOC);
     $commentSql = "SELECT * FROM blogComment WHERE blogID = '$blogID' AND commentDelete = '0' ORDER BY commentID DESC";
@@ -136,14 +142,14 @@
 
             <div class="shareboard__inner">
                 <div class="shareboard">
-                    <div class="shareboard__view">
+                    <div class="shareboard__view" id="comment<?=$comment['commentID']?>">
                         <div class="img">
                             <img src="/web2023-PHP/php/assets/blog/<?=$blogInfo['blogImgFile']?>">
                         </div>
                         <div class="text">
                             <div class="profile">
                                 <div class="sec1">
-                                    <img src="../html/assets/img/shareboard-profile.png" alt="프로필사진">
+                                    <img src="../html/assets/img/<?=$blog['youImgSrc']?>" alt="프로필사진">
                                     <p><?= $blog['nickName']?></p>
                                 </div>
                                 <div class="sec2">
@@ -230,59 +236,62 @@ foreach ($result as $index => $blogInfo) {
                             <a href="shareBoard.php" class="btnStyle6">목록보기</a>
                         </div>                    
                     </div>
-                    <div class="blog__comment">
-            <h3>댓글쓰기</h3>
-            <?php
-                foreach($commentResult as $comment){ ?>
-                    <div class="comment__view" id="comment<?=$comment['commentID']?>">
-                        <div class="avatar">
-                            <img src="https://t1.daumcdn.net/tistory_admin/blog/admin/profile_default_06.png" alt="">
+                    <div class="blog__comment" id="blogComment">
+                        <h3>댓글</h3>
+                        <?php
+                            foreach($commentResult as $comment){ ?>
+                                <div class="comment__view" id="comment<?=$comment['commentID']?>">
+                                    <div class="avatar">
+                                        <img src="https://t1.daumcdn.net/tistory_admin/blog/admin/profile_default_06.png" alt="">
+                                    </div>
+                                    <div class="info">
+                                        <span class="nickname"><?=$comment['commentName']?></span>
+                                        <span class="date"><?=date('Y-m-d', $comment['regTime'])?></span>
+                                        <p class="msg"><?=$comment['commentMsg']?></p>
+
+                                        <div class="del">
+                                            <a href="#" class="comment__del__del">삭제</a>
+                                            <a href="#" class="comment__del__mod">수정</a>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php }?>
+
+                        <!-- 삭제 -->
+                        <div class="comment__delete" style="display: none">
+                            <label for="commentDeletePass" class="blind">비밀번호</label>
+                            <input type="password" id="commentDeletePass" name="commentDeletePass" placeholder="비밀번호">
+                            <button id="commentDeleteCancel">취소</button>
+                            <button id="commentDeleteButton">삭제</button>
                         </div>
-                        <div class="info">
-                            <span class="nickname"><?=$comment['commentName']?></span>
-                            <span class="date"><?=date('Y-m-d', $comment['regTime'])?></span>
-                            <p class="msg"><?=$comment['commentMsg']?></p>
-                            <!-- 삭제 -->
-                            <div class="comment__delete" style="display: none">
-                                <label for="commentDeletePass" class="blind">비밀번호</label>
-                                <input type="password" id="commentDeletePass" name="commentDeletePass" placeholder="비밀번호">
-                                <button id="commentDeleteCancel">취소</button>
-                                <button id="commentDeleteButton">삭제</button>
-                            </div>
-                            <!-- //삭제 -->
-                            <!-- 수정 -->
-                            <div class="comment__modify" style="display: none">
-                                <label for="msg__modify" class="blind">수정 내용</label>
-                                <textarea name="msg__modify" id="msg__modify" cols rows="4" placeholder="수정할 내용을 적어주세요!"></textarea>
-                                <label for="commentModifyPass" class="blind">비밀번호</label>
-                                <input type="password" id="commentModifyPass" name="commentModifyPass" placeholder="비밀번호">
-                                <button id="commentModifyCancel">취소</button>
-                                <button id="commentModifyButton">수정</button>
-                            </div>
-                            <!-- //수정 -->
-                            <div class="del">
-                                <a href="#" class="comment__del__del">삭제</a>
-                                <a href="#" class="comment__del__mod">수정</a>
-                            </div>
+                        <!-- //삭제 -->
+                        <!-- 수정 -->
+                        <div class="comment__modify" style="display: none">
+                            <label for="commentModifyMsg" class="blind">수정 내용</label>
+                            <textarea name="commentModifyMsg" id="commentModifyMsg" cols rows="4" placeholder="수정할 내용을 적어주세요!" maxlength="255" required></textarea>
+                            <label for="commentModifyPass" class="blind">비밀번호</label>
+                            <input type="password" id="commentModifyPass" name="commentModifyPass" placeholder="비밀번호" rqeuired>
+                            <button id="commentModifyCancel">취소</button>
+                            <button id="commentModifyButton">수정</button>
+                        </div>
+                        <!-- //수정 -->
+
+                        <div class="comment__write">
+                            <form action="#">
+                                <fieldset>
+                                    <legend class="blind">댓글 쓰기</legend>
+                                    <label for="commentPass">비밀번호</label>
+                                    <input type="password" id="commentPass" name="commentPass" placeholder="비밀번호" required>
+                                    <label for="commentName">이름</label>
+                                    <input type="text" id="commentName" name="commentName" placeholder="이름" required>
+                                    <label for="commentWrite">댓글쓰기</label>
+                                    <textarea id="commentWrite" name="commentWrite" rows="4" placeholder="댓글을 써주세요!" maxlength="255" required></textarea>
+                                    <button type="button" id="commentWriteBtn" class="btnStyle5 mt10">댓글쓰기</button>
+                                </fieldset>
+                            </form>
                         </div>
                     </div>
-            <?php } ?>
-            <div class="comment__write">
-                <form action="#">
-                    <fieldset>
-                        <legend class="blind">댓글 쓰기</legend>
-                        <label for="commentPass">비밀번호</label>
-                        <input type="password" id="commentPass" name="commentPass" placeholder="비밀번호" required>
-                        <label for="commentName">이름</label>
-                        <input type="text" id="commentName" name="commentName" placeholder="이름" required>
-                        <label for="commentWrite">댓글쓰기</label>
-                        <textarea id="commentWrite" name="commentWrite" rows="4" placeholder="댓글을 써주세요!" maxlength="255" required></textarea>
-                        <button type="button" id="commentWriteBtn" class="btnStyle3 mt10">댓글쓰기</button>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-        <!-- //blog__comment -->
+                    <!-- bolg__comment -->
                 </div>
 
             </div>
@@ -296,11 +305,59 @@ foreach ($result as $index => $blogInfo) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
         let commentID = "";
+        // 댓글 수정 버튼
+        $(".comment__del__mod").click(function(e){
+            e.preventDefault();
+            //alert("댓글 수정 버튼 누름");
+            $(this).parent().before($(".comment__modify"));
+            $(".comment__modify").show();
+            $(".comment__delete").hide();
+            commentID = $(this).parent().parent().parent().attr("id");
+        });
+        // 댓글 수정 버튼 --> 취소 버튼
+        $("#commentModifyCancel").click(function(){
+            $(".comment__modify").hide();
+        });
+        // 댓글 수정 버튼 --> 수정 버튼
+        $("#commentModifyButton").click(function(){
+            let number = commentID.replace(/[^0-9]/g, "");
+            if($("#commentModifyPass").val() == ""){
+                alert("댓글 작성시 비밀번호를 작성해주세요!");
+                $("#commentModifyButton").focus();
+            } else {
+                $.ajax({
+                    url: "blogCommentModify.php",
+                    method: "POST",
+                    dataType: "json",
+                    data: {
+                        "commentMsg": $("#commentModifyMsg").val(),
+                        "commentPass": $("#commentModifyPass").val(),
+                        "commentID": number,
+                    },
+                    success: function(data){
+                        console.log(data);
+                        if(data.result == "bad"){
+                            alert("비밀번호가 틀렸습니다.!");
+                        } else {
+                            alert("댓글이 수정되었습니다.");
+                        }
+                        location.reload();
+                    },
+                    error: function(request, status, error){
+                        console.log("request" + request);
+                        console.log("status" + status);
+                        console.log("error" + error);
+                    }
+                })
+            }
+        });
         // 댓글 삭제 버튼
         $(".comment__del__del").click(function(e){
             e.preventDefault();
-            // alert("댓글 삭제 버튼 누름");
-            $(this).parent().prev().prev().show();
+            //alert("댓글 삭제 버튼 누름");
+            $(this).parent().before($(".comment__delete"));
+            $(".comment__delete").show();
+            $(".comment__modify").hide()
             commentID = $(this).parent().parent().parent().attr("id");
         });
         // 댓글 삭제 버튼 -> 취소 버튼
@@ -341,6 +398,7 @@ foreach ($result as $index => $blogInfo) {
         });
         // 댓글 쓰기 버튼
         $("#commentWriteBtn").click(function(){
+            $("#blogComment").focus();
             if($("#commentWrite").val() == ""){
                 alert("댓글을 작성해주세요!");
                 $("#commentWrite").focus();
@@ -365,7 +423,7 @@ foreach ($result as $index => $blogInfo) {
                         console.log("status" + status);
                         console.log("error" + error);
                     }
-                })
+                });
             }
         });
     </script>

@@ -1,12 +1,29 @@
 <?php
     include "../connect/connect.php";
     include "../connect/session.php";
+    // $sql = "SELECT count(blogID) FROM blog";
+    // $result = $connect -> query($sql);
+    
 
-    $sql = "SELECT count(blogID) FROM blog";
-    $result = $connect -> query($sql);
+    if (isset($_GET['page'])) {
+        $page = (int) $_GET['page'];
+    } else {
+        $page = 1;
+    }
+    
+    $searchKeyword = $_GET['searchKeyword'];
+    $searchKeyword = $connect->real_escape_string(trim($searchKeyword));
+    
+    $sql = "SELECT b.blogID, b.blogTitle, b.blogContents, b.blogImgFile, b.blogRegTime, b.blogView, m.nickName FROM blog b JOIN members2 m ON(b.memberID = m.memberID) ";
+    $sql .= "WHERE b.blogTitle LIKE '%{$searchKeyword}%' OR b.blogContents LIKE '%{$searchKeyword}%'";
+    $sql .= "ORDER BY b.blogID DESC ";
+    
+    echo $sql;
 
-    $boardTotalCount = $result -> fetch_array(MYSQLI_ASSOC);
-    $boardTotalCount = $boardTotalCount['count(blogID)'];
+    $result = $connect->query($sql);
+    $totalCount = $result->num_rows;
+    // $boardTotalCount = $result -> fetch_array(MYSQLI_ASSOC);
+    // $boardTotalCount = $boardTotalCount['count(blogID)'];
 ?>
 
 <!DOCTYPE html>
@@ -41,14 +58,13 @@
             display: flex;
             flex-wrap: wrap;
             box-sizing: border-box;
-            
         }
         .list__img .img__box{
             /* border-radius: 15px;
             padding: 10px */
             cursor: pointer;
             background-size: cover;
-            width: 100;        
+            width: 100;
         }
         .list__text {
             /* height: 170px; */
@@ -66,7 +82,6 @@
         .list__name b {
             padding-left: 30px;
             position: relative;
-            
         }
         .list__name b::before {
             position: absolute;
@@ -82,7 +97,6 @@
             border-radius: 50%;
         }
         .list__name small {
-
         }
         .list__text .title {
             width: 100%;
@@ -122,11 +136,9 @@
         .list__img9 {background: url(../html/assets/img/community18.png) 40%; width: 100%; height: 100%;}
         .list__img10 {background: url(../html/assets/img/community19.png) 70%; width: 100%; height: 100%;}
         .list__img11 {background: url(../html/assets/img/community20.png) 80%; width: 100%; height: 100%;} */
-       
         .list:nth-last-child(1) {
             /* margin-bottom: 100px; */
         }
-        
     </style>
     <!-- CSS -->
     <link rel="stylesheet" href="../html/assets/css/style.css">
@@ -134,7 +146,7 @@
     <script defer src="../html/assets/js/common.js"></script>
 </head>
 <body>
-    <div id="board__header" class="mt100">
+        <div id="board__header" class="mt100">
             <div><a href="trendsBoard.php">뷰티트렌드</a></div> <!-- news-->
             <div class="active"><a href="shareBoard.php">공유게시판</a></div> <!-- share-->
             <div><a href="../notice/boardNotice.php">공지사항</a></div> <!-- notice-->
@@ -143,25 +155,22 @@
     <!-- board__header -->
     <main id="main" class=" mt80">
         <?php include "../include/abbHeader.php" ?>
-        
-    <div class="list__inner">
-        <div class="section__img">
+        <div class="notice__inner mt100 ">
+            <div class="notice__inner">
+            <div class="section__img">
             <img src="../html/assets/img/boardimg_02.png" alt="">
         </div>
-        <div class="notice__search">
+                <div class="notice__search">
                     <div class="left">
-                    *총<em><?=$boardTotalCount?></em>건의 게시물이 등록되어 있습니다.
+                        *총<em><?=$totalCount?></em>건의 게시물이 등록되어 있습니다.
                     </div>
                     <div class="right">
-                        <form action="shareBoardSearch.php" name="shareBoard" mmethod="get">
+                        <form action="shareBoardSearch.php" name="shareBoardSearch" mmethod="get">
                             <fieldset>
                                 <legend class="blind">게시판 검색영역</legend>
-                                <input type="search" name="searchKeyword" id="searchKeyword" placeholder="검색어를 입력하세요!" required>
+                                <input type="search" name="searchKeyword" id="searchKeyword" placeholder="검색어를 입력하세요!" value="<?= $searchKeyword?>" required>
                                 <button type="submit" class="btnStyle4">검색</button>
-                                <?php if(isset($_SESSION['memberID'])){ ?>
-                                    <button type="submit" class="btnStyle4"><a href="shareBoardWrite.php">글쓰기</a></button>
-                                <?php } ?>
-                                <!-- <button type="submit " class="btnStyle4"><a href="boardWrite.php">글쓰기</a></button> -->
+                                <button type="submit " class="btnStyle4"><a href="boardWrite.php">글쓰기</a></button>
                                 
                                 <!-- <button type="submit" class="btnStyle3">글쓰기 </button> -->
                                 <!-- <a class="btnStyle3" href="boadWrite.html"> 글쓰기</a> -->
@@ -170,46 +179,19 @@
                     </div>
                 </div>
 
-        <!-- <h2>공유 게시판</h2> -->
-        <div class="list">
-            <!-- list__each -->
+                <div class="list">
+<?php 
+    $viewNum = 16;
+    $viewLimit = ($viewNum * $page) - $viewNum;
 
-<?php
-    // $sql = "SELECT * FROM blog WHERE blogDElete = 0 ORDER BY blogID DESC";
-    // $result = $connect -> query($sql);
-
-    
-    // echo $sql;
-    // // $sql = "SELECT b.blogContents, b.blogTitle, m.youName, b.regTime, b.blogView ,m.nickName FROM blog b JOIN members2 m ON(m.memberID = b.memberID) WHERE b.blogID = {$blogID}";
-    // echo $result;
-    ?>
-    <?php 
-
-if(isset($_GET['page'])){
-    $page = (int) $_GET['page'];
-} else {
-    $page = 1;
-}
-
-$viewNum = 16;
-$viewLimit = ($viewNum * $page) - $viewNum; 
-
-//   1~20 DESC LIMIT 0, 20 -> page1 (viewNum * 1) - viewNum
-// 21~40 DESC LIMIT 20, 20 -> page2 (viewNum * 2) - viewNum
-// 40~60 DESC LIMIT 40, 20 -> page3 (viewNum * 3) - viewNum
-// 60~80 DESC LIMIT 60, 20 -> page4 (viewNum * 4) - viewNum
-
-$sql = "SELECT b.blogID, b.blogContents, b.blogImgFile,  b.blogTitle, m.youName, b.blogRegTime, b.blogView ,m.nickName FROM blog b JOIN members2 m ON b.memberID = m.memberID ORDER BY blogID DESC LIMIT {$viewLimit}, {$viewNum};";
-$result = $connect -> query($sql);
-
-// $sql = "SELECT boardID, boardTitle, regTime FROM board ORDER BY boardID DESC LIMIT {$viewLimit}, {$viewNum}";
-// $result = $connect -> query($sql);
+    $sql .= "LIMIT {$viewLimit}, {$viewNum}";
+    $result = $connect -> query($sql);
 
 
                 
-        foreach($result as $blog){?>
+    foreach($result as $blog){?>
         
-            <div class="list__each">
+        <div class="list__each">
                 <div class="list__img">
                     <a href="shareBoardView.php?blogID=<?=$blog['blogID']?>">
                         <img src="/web2023-PHP/php/assets/blog/<?=$blog['blogImgFile']?>" alt="<?=$blog['blogTitle']?>">
@@ -226,25 +208,25 @@ $result = $connect -> query($sql);
                 </div>
 
             </div>
-        <?php } ?>
+    <?php } ?>
 
             <!-- //list__each -->
         </div>
     </div>
     <div class="notice__pages mb100">
-        <ul>
-            <?php
-            $viewNum = 16;
-            $viewLimit = ($viewNum * $page) - $viewNum;
-
-            $sql = "SELECT blogID, blogTitle, regTime FROM blog ORDER BY blogID DESC LIMIT {$viewLimit}, {$viewNum}";
-            $result = $connect -> query($sql);
-
-            
+                    <ul>
+                        <!-- <li><a href="#"><</a></li>
+                        <li class="active"> <a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">></a></li> -->
+<?php
     //게시글 총 갯수
 
     //총 페이지 갯수
-    $boardTotalCount = ceil($boardTotalCount/$viewNum);
+    $totalCount = ceil($totalCount/$viewNum);
 
     // echo $boardTatalCount;
     //1 2 3 4 5 6 7 8 9 10 11 12 13 ...
@@ -254,13 +236,13 @@ $result = $connect -> query($sql);
 
     //처음 페이지 초기화/ 마지막 페이지
     if($startPage < 1) $startPage =1;
-    if($endPage >= $boardTotalCount) $endPage = $boardTotalCount;
+    if($endPage >= $totalCount) $endPage = $totalCount;
 
     // 첫 페이지로 가기/ 이전 페이지로 가기
-    if($page !== 1 && $boardTotalCount !=0 && $page <= $boardTotalCount){
-        echo "<li><a href='shareBoard.php?page=1'>처음으로</a></li>";
+    if($page !== 1 && $totalCount !=0 && $page <= $totalCount){
+        echo "<li><a href='shareBoardSearch.php?page=1&searchKeyword={$searchKeyword}'>처음으로</a></li>";
         $prevPage = $page - 1;
-        echo "<li><a href='shareBoard.php?page={$prevPage}'>이전</a></li>";
+        echo "<li><a href='shareBoardSearch.php?page={$prevPage}&searchKeyword={$searchKeyword}'>이전</a></li>";
     }
 
     //페이지
@@ -268,29 +250,17 @@ $result = $connect -> query($sql);
         $active = "";
         if($i == $page) $active = "active";
 
-        echo "<li class='{$active}'><a href='shareBoard.php?page={$i}'>{$i}</a></li>";
+        echo "<li class='{$active}'><a href='shareBoardSearch.php?page={$i}&searchKeyword={$searchKeyword}'>{$i}</a></li>";
     }
     // 마지막 페이지로/ 다음 페이지로
-    if($page != $boardTotalCount && $page <= $boardTotalCount){
+    if($page != $totalCount && $page <= $totalCount){
         $nextPage = $page + 1;
-        echo "<li><a href='shareBoard.php?page={$nextPage}'>다음</a></li>";
-        echo "<li><a href='shareBoard.php?page={$boardTotalCount}'>마지막으로</a></li>";
+        echo "<li><a href='shareBoardSearch.php?page={$nextPage}&searchKeyword={$searchKeyword}'>다음</a></li>";
+        echo "<li><a href='shareBoardSearch.php?page={$totalCount}&searchKeyword={$searchKeyword}'>마지막으로</a></li>";
     }
 ?>
-            <!-- <li><a href="#"><</a></li>
-            <li class="active"> <a  href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">></a></li> -->
-        
-        </ul>
-    </div>
-
-    <!-- //skip -->
-
-
+                    </ul>
+                </div>
 
     </main>
 

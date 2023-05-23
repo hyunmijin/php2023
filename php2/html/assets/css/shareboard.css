@@ -333,10 +333,11 @@
 }
 .blog__comment h3 {
     display: inline-block;
-    background-color: var(--color__black);
-    color: var(--color__white);
+    /* background-color: var(--color__black); */
+    /* color: var(--color__white); */
     padding: 0 4px 2px 4px;
     margin-bottom: 40px;
+    margin-top: 10px;
 }
 .comment__write fieldset {
     display: flex;

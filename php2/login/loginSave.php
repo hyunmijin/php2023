@@ -31,7 +31,7 @@
             $_SESSION['youEmail'] = $memberInfo['youEmail'];
             $_SESSION['youName'] = $memberInfo['youName'];
 
-            Header("Location: ../notice/boardNotice.php");
+            Header("Location: ../main/main.php");
         }
     }
             

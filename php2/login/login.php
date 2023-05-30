@@ -10,7 +10,7 @@
     <!-- SCRIPT -->
     <script defer src="../html/assets/js/common.js"></script>
 </head>
-<body >
+<body id="scroll">
     <div id="skip">
         <a href="#header">헤더 영역 바로가기</a>
         <a href="#main">컨텐츠 영역 바로가기</a>
@@ -51,7 +51,7 @@
         <div class="find3">
             <a href="loginFind.php">아이디 찾기</a>
             <a href="loginFindPw.php">비밀번호 찾기</a>
-            <a href="../join/join.php">회원가입 하기</a>
+            <a href="../join/jointos.php">회원가입 하기</a>
         </div>
     </main>
     
@@ -72,12 +72,10 @@
             $("#memberIDComment").addClass("red");
             if($("#memberID").val() == ''){
                 $("#memberIDComment").text("* 아이디를 입력해주세요!");
-                $("#memberID").focus();
                 return false;
             }else if(!getmemberID.test($("#memberID").val())){
                 $("#memberIDComment").text("* 아이디 형식에 맞게 작성해주세요! aaa@gmail.com");
                 $("#memberID").val('');
-                $("#memberID").focus();
                 return false;
             } else {
                 $("#memberIDComment").text("");
@@ -99,20 +97,16 @@
             $("#youPassComment").addClass("red");
             if($("#youPass").val() == ''){
                 $("#youPassComment").text("* 비밀번호를 입력해주세요!");
-                $("#youPass").focus();
                 return false;
                 // 8~20자이내, 공백X, 영문, 숫자, 특수문자
             }else if(getYouPass.length < 8 || getYouPass.length > 20){
                 $("#youPassComment").text(" * 8자리 ~ 20자리 이내로 입력해주세요");
-                $("#youPass").focus();
                 return false;
             } else if (getYouPass.search(/\s/) != -1){
                 $("#youPassComment").text("* 비밀번호는 공백없이 입력해주세요!");
-                $("#youPass").focus();
                 return false;
             } else if (getYouPassNum < 0 || getYouPassEng < 0 || getYouPassSpe < 0 ){
                 $("#youPassComment").text("* 영문, 숫자, 특수문자를 혼합하여 입력해주세요!");
-                $("#youPass").focus();
                 return false;
             }else{
                 $("#youPassComment").text("");

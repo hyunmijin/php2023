@@ -6,12 +6,23 @@
     // var_dump($_SESSION);
     // echo "</pre>";
 
+    // echo "<pre>";
+    // var_dump($_SESSION);
+    // echo "</pre>";
 
+    // echo "<pre>";
+    // var_dump($_SESSION);
+    // echo "</pre>";
+    
     if(isset($_GET['memberID'])){
         $memberID = $_GET['memberID'];
     } else {
         $memberID =0;;
     }
+    if(isset($_SESSION['memberID'])){
+        $memberID =$_SESSION['memberID'];
+    }
+
 
     if(isset($_GET['blogID'])){
         $blogID = $_GET['blogID'];
@@ -19,7 +30,7 @@
         Header("Location: shareBoard.php");
     }
 
-    $blogSql = "SELECT * FROM blog WHERE blogID = '$blogID'";
+    $blogSql = "SELECT b.*,m.nickName, m.youImgSrc FROM blog b JOIN members2 m ON b.memberID = m.memberID  WHERE blogID  = '$blogID' ORDER BY blogID DESC;";
     $blogResult = $connect -> query($blogSql);
     $blogInfo = $blogResult -> fetch_array(MYSQLI_ASSOC);
 
@@ -31,7 +42,7 @@
     $sql = "UPDATE blog SET blogView = blogView + 1 WHERE blogID = {$blogID}";
     $connect -> query($sql);
 
-    $sql = "SELECT b.blogID, b.blogContents, b.blogImgFile,  b.blogTitle, m.youName, b.blogRegTime, b.blogView ,m.nickName ,m.youImgSrc     FROM blog b JOIN members2 m ON b.memberID = m.memberID ORDER BY blogID DESC;";
+    $sql = "SELECT b.blogID, b.blogContents, b.blogImgFile,  b.blogTitle, m.youName, b.blogRegTime, b.blogView ,m.nickName ,m.youImgSrc FROM blog b JOIN members2 m ON b.memberID = m.memberID ORDER BY blogID DESC";
     $Result = $connect -> query($sql);
     $blog = $Result -> fetch_array(MYSQLI_ASSOC);
     $commentSql = "SELECT * FROM blogComment WHERE blogID = '$blogID' AND commentDelete = '0' ORDER BY commentID DESC";
@@ -112,7 +123,7 @@
     </style>
 </head>
 
-<body class="white">
+<body class="white" id= "scroll">
     <div id="skip">
         <a href="#header">헤더 영역 바로가기</a>
         <a href="#main">컨텐츠 영역 바로가기</a>
@@ -129,7 +140,7 @@
             <div><a href="trendsBoard.php">뷰티트렌드</a></div> <!-- news-->
             <div class="active"><a href="../shareBoard/shareBoard.php">공유게시판</a></div> <!-- share-->
             <div><a href="../notice/boardNotice.php">공지사항</a></div> <!-- notice-->
-            <div><a href="FAQ.php">FAQ</a></div> <!-- faq-->
+            <div><a href="../FAQ/FAQ.php">FAQ</a></div> <!-- faq-->
         </div>
     <!-- board__header -->
 
@@ -144,13 +155,13 @@
                 <div class="shareboard">
                     <div class="shareboard__view" id="comment<?=$comment['commentID']?>">
                         <div class="img">
-                            <img src="/web2023-PHP/php/assets/blog/<?=$blogInfo['blogImgFile']?>">
+                            <img src="../html/assets/blog/<?=$blogInfo['blogImgFile']?>">
                         </div>
                         <div class="text">
                             <div class="profile">
                                 <div class="sec1">
-                                    <img src="../html/assets/img/<?=$blog['youImgSrc']?>" alt="프로필사진">
-                                    <p><?= $blog['nickName']?></p>
+                                <img src="../html/assets/profile/<?=$blogInfo['youImgSrc']?>" alt="프로필사진">
+                                    <p><?= $blogInfo['nickName']?></p>
                                 </div>
                                 <div class="sec2">
                                     <p><?=date('Y-m-d', $blogInfo['blogRegTime'])?></p>
@@ -170,8 +181,16 @@
                             <h4>좋아요 💜 <span> 10명이 좋아합니다</span> </h4>
                         </div>
                         <div class="edit">
-                            <a href="shareBoardModify.php?blogID=<?=$_GET['blogID']?>">수정 /</a>
-                            <a href="shareBoardRemove.php?blogID=<?=$_GET['blogID']?>" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+                            <a href="shareBoardModify.php?blogID=<?=$_GET['blogID']?>">수정</a>
+                            <?php
+                        if (isset($_SESSION['memberID'])) {
+                            if($_SESSION['memberID'] == $blogInfo['memberID']){
+                            ?>
+                            <a href="shareBoardRemove.php?blogID=<?=$_GET['blogID']?>" onclick="return confirm('정말 삭제하시겠습니까?')"> / 삭제</a>
+                        <?php
+                            }
+                        }
+                        ?>
                             <!-- <a href="">삭제</a> -->
                         </div>
                     </div>
@@ -225,7 +244,7 @@ foreach ($result as $index => $blogInfo) {
         $count++;
         ?>
                             <a href="ShareboardView.php?blogID=<?=$blogInfo['blogID']?>">
-                                <img src="/web2023-PHP/php/assets/blog/<?=$blogInfo['blogImgFile']?>" alt="<?=$info['blogTitle']?>">
+                                <img src="../html/assets/blog/<?=$blogInfo['blogImgFile']?>" alt="<?=$info['blogTitle']?>">
                             </a>
                             <?php 
     }

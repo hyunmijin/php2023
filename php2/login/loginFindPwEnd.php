@@ -10,7 +10,7 @@
     <!-- SCRIPT -->
     <script defer src="../html/assets/js/common.js"></script>
 </head>
-<body >
+<body id="scroll">
     <div id="skip">
         <a href="#header">헤더 영역 바로가기</a>
         <a href="#main">컨텐츠 영역 바로가기</a>
@@ -54,7 +54,7 @@
         </div> 
         <div class="find">
             <a href="loginFind.php">아이디찾기</a>
-            <a href="../join/join.php">회원가입</a>
+            <a href="../join/jointos.php">회원가입</a>
         </div>
     </main>
     <!-- main -->

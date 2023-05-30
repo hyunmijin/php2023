@@ -107,6 +107,7 @@ body.windows {
     border: 1px solid #F06171;
     border-radius: 5px;
     font-size: 16px;
+    cursor: pointer;
 }
 /* 검색버튼 */
 .btnStyle4 {
@@ -117,6 +118,7 @@ body.windows {
     border-radius: 5px;
     font-size: 16px;
     padding: 8px 50px 8px 50px;
+    cursor: pointer;
 }
 /* 글쓰기 수정 삭제 */
 .btnStyle5 {
@@ -127,6 +129,7 @@ body.windows {
     border-radius: 5px;
     font-size: 16px;
     padding: 10px 50px 10px 50px;
+    
 } 
 /* 회원정보수정 버튼 1 */
 .infoBtnStyle1 {

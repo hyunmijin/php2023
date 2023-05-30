@@ -64,25 +64,16 @@
             border-bottom: 1px solid #CCCCCC;
         }
         .list__name b {
-            padding-left: 30px;
-            position: relative;
-            
+            padding-right: 0px;
+            /* position: relative; */
         }
-        .list__name b::before {
-            position: absolute;
-            content: '';
-            background-image: url(../html/assets/img/shareboard-profile.png);
-            background-position: 45% 25%;
-            background-size: 150%;
+        .list__name b img {
             width: 25px;
             height: 25px;
-            background-color: #999;
-            top: -3px;
-            left: 0px;
-            border-radius: 50%;
-        }
-        .list__name small {
-
+            /* top: -3px; */
+            right: 0;
+            background-size: 150%;
+            border-radius: 50px;
         }
         .list__text .title {
             width: 100%;
@@ -133,12 +124,12 @@
     <!-- SCRIPT -->
     <script defer src="../html/assets/js/common.js"></script>
 </head>
-<body>
+<body id="scroll">
     <div id="board__header" class="mt100">
             <div><a href="trendsBoard.php">뷰티트렌드</a></div> <!-- news-->
             <div class="active"><a href="shareBoard.php">공유게시판</a></div> <!-- share-->
             <div><a href="../notice/boardNotice.php">공지사항</a></div> <!-- notice-->
-            <div><a href="FAQ.php">FAQ</a></div> <!-- faq-->
+            <div><a href="../FAQ/FAQ.php">FAQ</a></div> <!-- faq-->
     </div>
     <!-- board__header -->
     <main id="main" class=" mt80">
@@ -199,7 +190,7 @@ $viewLimit = ($viewNum * $page) - $viewNum;
 // 40~60 DESC LIMIT 40, 20 -> page3 (viewNum * 3) - viewNum
 // 60~80 DESC LIMIT 60, 20 -> page4 (viewNum * 4) - viewNum
 
-$sql = "SELECT b.blogID, b.blogContents, b.blogImgFile,  b.blogTitle, m.youName, b.blogRegTime, b.blogView ,m.nickName FROM blog b JOIN members2 m ON b.memberID = m.memberID ORDER BY blogID DESC LIMIT {$viewLimit}, {$viewNum};";
+$sql = "SELECT b.blogID, b.blogContents, b.blogImgFile, m.youImgSrc, b.blogTitle, m.youName, b.blogRegTime, b.blogView ,m.nickName FROM blog b JOIN members2 m ON b.memberID = m.memberID ORDER BY blogID DESC LIMIT {$viewLimit}, {$viewNum};";
 $result = $connect -> query($sql);
 
 // $sql = "SELECT boardID, boardTitle, regTime FROM board ORDER BY boardID DESC LIMIT {$viewLimit}, {$viewNum}";
@@ -212,13 +203,13 @@ $result = $connect -> query($sql);
             <div class="list__each">
                 <div class="list__img">
                     <a href="shareBoardView.php?blogID=<?=$blog['blogID']?>">
-                        <img src="/web2023-PHP/php/assets/blog/<?=$blog['blogImgFile']?>" alt="<?=$blog['blogTitle']?>">
+                        <img src="../html/assets/blog/<?=$blog['blogImgFile']?>" alt="<?=$blog['blogTitle']?>">
                     </a>
                 </div>
 
                 <div class="list__text">
 
-                    <div class="list__name"><b><?=$blog['nickName']?></b><small><?=date('Y-m-d', $blog['blogRegTime'])?></small></div>
+                    <div class="list__name"><b><img src="../html/assets/profile/<?=$blog['youImgSrc']?>" alt="프로필사진"><?=$blog['nickName']?></b><small><?=date('Y-m-d', $blog['blogRegTime'])?></small></div>
 
                     <h3 class="title"><?=$blog['blogTitle']?></h3>
                     <p class="content"><?=$blog['blogContents']?></p>

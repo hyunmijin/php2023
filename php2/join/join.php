@@ -10,7 +10,7 @@
     <!-- SCRIPT -->
     <script defer src="../html/assets/js/common.js"></script>
 </head>
-<body >
+<body id="scroll">
     <div id="skip">
         <a href="#header">헤더 영역 바로가기</a>
         <a href="#main">컨텐츠 영역 바로가기</a>
@@ -97,12 +97,10 @@
             $("#memberIDComment").addClass("red");
             if($("#memberID").val() == ''){
                 $("#memberIDComment").text("* 아이디를 입력해주세요!");
-                $("#memberID").focus();
                 return false;
             }else if(!getmemberID.test($("#memberID").val())){
                 $("#memberIDComment").text("* 아이디 형식에 맞게 작성해주세요! aaa@gmail.com");
                 $("#memberID").val('');
-                $("#memberID").focus();
                 return false;
             }
             
@@ -141,12 +139,10 @@
             let getnickName = RegExp(/^[가-힣|0-9]+$/);
             if($("#nickName").val() == ''){
                 $("#nickNameComment").text("* 닉네임을 입력해주세요!");
-                $("#nickName").focus();
                 return false;
             }else if(!getnickName.test($("#nickName").val())){
                 $("#nickNameComment").text("* 닉네임은 한글 또는 숫자만 사용 가능합니다.");
                 $("#nickName").val('');
-                $("#nickName").focus();
                 return false;
             }else{
                 $("#nickNameComment").removeClass("red");
@@ -188,12 +184,10 @@
             let getYouPhone = RegExp(/01[016789]-[^0][0-9]{3,4}-[0-9]{4}/);
             if($("#youPhone").val() == ''){
                 $("#youPhoneComment").text("* 연락처를 입력해주세요!");
-                $("#youPhone").focus();
                 return false;
             }else if(!getYouPhone.test($("#youPhone").val())){
                 $("#youPhoneComment").text("* 휴대폰 번호가 정확하지 않습니다.(000-0000-0000)");
                 $("#youPhone").val('');
-                $("#youPhone").focus();
                 return false;
             }
             $.ajax({
@@ -237,20 +231,16 @@
             $("#youPassComment").addClass("red");
             if($("#youPass").val() == ''){
                 $("#youPassComment").text("* 비밀번호를 입력해주세요!");
-                $("#youPass").focus();
                 return false;
                 // 8~20자이내, 공백X, 영문, 숫자, 특수문자
             }else if(getYouPass.length < 8 || getYouPass.length > 20){
                 $("#youPassComment").text(" * 8자리 ~ 20자리 이내로 입력해주세요");
-                $("#youPass").focus();
                 return false;
             } else if (getYouPass.search(/\s/) != -1){
                 $("#youPassComment").text("* 비밀번호는 공백없이 입력해주세요!");
-                $("#youPass").focus();
                 return false;
             } else if (getYouPassNum < 0 || getYouPassEng < 0 || getYouPassSpe < 0 ){
                 $("#youPassComment").text("* 영문, 숫자, 특수문자를 혼합하여 입력해주세요!");
-                $("#youPass").focus();
                 return false;
             }else{
                 $("#youPassComment").removeClass("red");
@@ -261,7 +251,6 @@
             $("#youPassCComment").addClass("red");
             if($("#youPassC").val() == ''){
                 $("#youPassCComment").text("* 확인 비밀번호를 입력해주세요!");
-                $("#youPassC").focus();
                 return false;
                 // 비밀번호 동일한지 체크
             }else if($("#youPass").val() !== $("#youPassC").val()){
@@ -279,17 +268,14 @@
             let getYouName = RegExp(/^[가-힣]+$/);
             if($("#youName").val() == ''){
                 $("#youNameComment").text("* 이름을 입력해주세요!");
-                $("#youName").focus();
                 return false;
             }else if(!getYouName.test($("#youName").val())){
                 $("#youNameComment").text("* 이름은 한글만 사용 가능합니다.");
                 $("#youName").val('');
-                $("#youName").focus();
                 return false;
             }else if($("#youName").val().length < 2 || $("#youName").val().length > 10){
                 $("#youNameComment").text("* 이름은 2~10글자까지만 가능합니다.");
                 $("#youName").val('');
-                $("#youName").focus();
                 return false;
             }else{
                 $("#youNameComment").removeClass("red");
@@ -305,12 +291,10 @@
             let getYouBirth = RegExp(/^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/);
             if($("#youBirth").val() == ''){
                 $("#youBirthComment").text("* 생년월일을 입력해주세요!");
-                $("#youBirth").focus();
                 return false;
             }else if(!getYouBirth.test($("#youBirth").val())){
                 $("#youBirthComment").text("* 생년월일 형식이 정확하지 않습니다.(YYYY-MM-DD)");
                 $("#youBirth").val('');
-                $("#youBirth").focus();
                 return false;
             }else{
                 $("#youBirthComment").removeClass("red");

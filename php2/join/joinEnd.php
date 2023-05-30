@@ -33,7 +33,7 @@
     ?>
 </head>
 
-<body>
+<body id="scroll">
 
     <div id="skip">
         <a href="#header">헤더 영역 바로가기</a>
@@ -62,7 +62,7 @@
                     당신의 피부와 아름다움을 지켜주세요. <br>
                     이제는 당신의 화장품을 쌓아두지 마세요<br>
                     과감히 버릴 수 있도록 ABB가 도와드립니다.</p>
-                <button type="submit" class="btnStyle3">메인으로 이동</button>
+                <a href="../login/login.php"><button type="submit" class="btnStyle3">로그인하러 가기</button></a>
             </div>
         </div>
     </main>

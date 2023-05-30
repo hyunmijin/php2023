@@ -19,6 +19,7 @@
             $connect -> query($sql);
         } else {
             echo "<script>alert('비밀번호가 틀렸습니다. 다시한번 확인해주세요!')</script>";
+            echo "<script>location.href = 'shareBoardModify.php?blogID=$blogID'</script>";
         }
     }else {
         echo "<script>alert('관리자 에러!!')<script>";
@@ -28,5 +29,5 @@
     //echo $blogID, $blogTitle, $blogContents;
 ?>
 <script>
-    location.href = "shareBoard.php";
+    location.href = "shareBoardView.php?blogID=<?=$blogID?>";    
 </script>

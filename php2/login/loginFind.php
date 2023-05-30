@@ -46,7 +46,7 @@
         </div> 
         <div class="find">
             <a href="../login/loginFindPw.php">비밀번호 찾기</a>
-            <a href="../join/join.php">회원가입</a>
+            <a href="../join/jointos.php">회원가입</a>
         </div>
     </main>
     <!-- main -->

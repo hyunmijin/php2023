@@ -130,7 +130,9 @@
     min-height: 450px;
     position: relative;
 }
-
+.info__view.scroll {
+    overflow-y:scroll;
+}
 
 .info__view__title {
     width: 100%;
@@ -201,38 +203,24 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.info__form div .user__phone__inner__chk {
-    /* display: flex; */
-    flex-wrap: wrap;
-    justify-content: space-between;
-    display: none;
-    transition: all 0.5s;
-}
 .inputStyleInfo.youPhone {
     padding-top: 3px;
     margin-bottom: 0px;
-    width: calc(98% - 150px);
+    width: calc(95% - 100px - 32%);
     height: 40px;
 }
 .phonekBtn {
     margin: 0;
-    width: 150px;
+    width: 100px;
     height: 40px;
 }
-
-.inputStyleInfo.chkNumber {
+.inputStyleInfo.youAgency {
     padding-top: 3px;
     margin-bottom: 0px;
-    width: calc(68% - 150px);
+    /* margin-bottom: 0px; */
+    width: 32%;
     height: 40px;
 }
-.inputStyleInfo.chkNumberTimer {
-    padding-top: 3px;
-    margin-bottom: 0px;
-    width: 30%;
-    height: 40px;
-}
-
 .inputStyleInfoRadio {
     height: 40px;
     background-color: #fff;
@@ -263,6 +251,11 @@
     left: -50px;
     top: -8px;
 }
+
+
+
+
+
 /* 라디오 버튼 */
 .rad-label {
     display: flex;
@@ -293,7 +286,7 @@
     width: inherit;
     height: inherit;
     border-radius: inherit;
-    background:  #fff;
+    background:  var(--bg__pink);
     transform: scale(1.1);
     transition: .3s;
 }
@@ -438,6 +431,8 @@
     width: 70px;
     height: 70px;
     cursor: pointer;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .nick__tag {

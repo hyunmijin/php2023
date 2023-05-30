@@ -31,7 +31,7 @@
     <!-- SCRIPT -->
     <script defer src="../html/assets/js/common.js"></script>
 </head>
-<body class="white">
+<body class="white" id="scroll">
     <div id="skip">
         <a href="#header">헤더 영역 바로가기</a>
         <a href="#main">컨텐츠 영역 바로가기</a>
@@ -43,10 +43,10 @@
         <!-- //header -->
 
         <div id="board__header" class="mt100">
-            <div><a href="trendsBoard.php">뷰티트렌드</a></div> <!-- news-->
-            <div><a href="shareBoard.php">공유게시판</a></div> <!-- share-->
+            <div><a href="../shareBoard/trendsBoard.php">뷰티트렌드</a></div> <!-- news-->
+            <div><a href="../shareBoard/shareBoard.php">공유게시판</a></div> <!-- share-->
             <div class="active"><a href="boardNotice.php">공지사항</a></div> <!-- notice-->
-            <div><a href="FAQ.php">FAQ</a></div> <!-- faq-->
+            <div><a href="../FAQ/FAQ.php">FAQ</a></div> <!-- faq-->
         </div>
         <!-- //board__header -->
 

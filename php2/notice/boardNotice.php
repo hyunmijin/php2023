@@ -21,7 +21,7 @@
     <!-- SCRIPT -->
     <script defer src="../html/assets/js/common.js"></script>
 </head>
-<body class="white">
+<body class="white" id="scroll">
     <div id="skip">
         <a href="#header">헤더 영역 바로가기</a>
         <a href="#main">컨텐츠 영역 바로가기</a>
@@ -33,10 +33,10 @@
 
         <!-- //header -->
         <div id="board__header" class="mt100">
-            <div><a href="trendsBoard.php">뷰티트렌드</a></div> <!-- news-->
+            <div><a href="../shareBoard/trendsBoard.php">뷰티트렌드</a></div> <!-- news-->
             <div><a href="../shareBoard/shareBoard.php">공유게시판</a></div> <!-- share-->
             <div class="active"><a href="../notice/boardNotice.php">공지사항</a></div> <!-- notice-->
-            <div><a href="FAQ.php">FAQ</a></div> <!-- faq-->
+            <div><a href="../FAQ/FAQ.php">FAQ</a></div> <!-- faq-->
         </div>
         <!-- board__header -->
         <div class="notice__inner mt100 ">
@@ -51,9 +51,12 @@
                                 <legend class="blind">게시판 검색영역</legend>
                                 <input type="search" name="searchKeyword" id="searchKeyword" placeholder="검색어를 입력하세요!" required>
                                 <button type="submit" class="btnStyle4">검색</button>
-                                <?php if(isset($_SESSION['memberID'])){ ?>
+                                <?php 
+                                if(isset($_SESSION['memberID'])){
+                                    if($_SESSION['memberID']=='1'){ ?>
                                     <button type="submit" class="btnStyle4"><a href="boardWrite.php">글쓰기</a></button>
-                                <?php } ?>
+                                    <?php } 
+                                }?>
                                 <!-- <button type="submit " class="btnStyle4"><a href="boardWrite.php">글쓰기</a></button> -->
                                 
                                 <!-- <button type="submit" class="btnStyle3">글쓰기 </button> -->

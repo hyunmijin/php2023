@@ -5,5 +5,5 @@
     unset($_SESSION['youEmail']);
     unset($_SESSION['youName']);
 
-    Header("Location: ../notice/boardNotice.php");
+    Header("Location: ../main/main.php");
 ?>

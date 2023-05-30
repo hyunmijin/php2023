@@ -17,8 +17,6 @@
     $sql = "SELECT b.blogID, b.blogTitle, b.blogContents, b.blogImgFile, b.blogRegTime, b.blogView, m.nickName FROM blog b JOIN members2 m ON(b.memberID = m.memberID) ";
     $sql .= "WHERE b.blogTitle LIKE '%{$searchKeyword}%' OR b.blogContents LIKE '%{$searchKeyword}%'";
     $sql .= "ORDER BY b.blogID DESC ";
-    
-    echo $sql;
 
     $result = $connect->query($sql);
     $totalCount = $result->num_rows;
@@ -150,7 +148,7 @@
             <div><a href="trendsBoard.php">뷰티트렌드</a></div> <!-- news-->
             <div class="active"><a href="shareBoard.php">공유게시판</a></div> <!-- share-->
             <div><a href="../notice/boardNotice.php">공지사항</a></div> <!-- notice-->
-            <div><a href="FAQ.php">FAQ</a></div> <!-- faq-->
+            <div><a href="../FAQ/FAQ.php">FAQ</a></div> <!-- faq-->
     </div>
     <!-- board__header -->
     <main id="main" class=" mt80">
@@ -170,7 +168,7 @@
                                 <legend class="blind">게시판 검색영역</legend>
                                 <input type="search" name="searchKeyword" id="searchKeyword" placeholder="검색어를 입력하세요!" value="<?= $searchKeyword?>" required>
                                 <button type="submit" class="btnStyle4">검색</button>
-                                <button type="submit " class="btnStyle4"><a href="boardWrite.php">글쓰기</a></button>
+                                <button type="submit " class="btnStyle4"><a href="shareBoardWrite.php">글쓰기</a></button>
                                 
                                 <!-- <button type="submit" class="btnStyle3">글쓰기 </button> -->
                                 <!-- <a class="btnStyle3" href="boadWrite.html"> 글쓰기</a> -->
@@ -188,28 +186,30 @@
     $result = $connect -> query($sql);
 
 
-                
-    foreach($result as $blog){?>
-        
-        <div class="list__each">
-                <div class="list__img">
-                    <a href="shareBoardView.php?blogID=<?=$blog['blogID']?>">
-                        <img src="/web2023-PHP/php/assets/blog/<?=$blog['blogImgFile']?>" alt="<?=$blog['blogTitle']?>">
-                    </a>
+    if($totalCount > 0){
+        foreach($result as $blog){?>
+            
+            <div class="list__each">
+                    <div class="list__img">
+                        <a href="shareBoardView.php?blogID=<?=$blog['blogID']?>">
+                            <img src="../html/assets/blog/<?=$blog['blogImgFile']?>" alt="<?=$blog['blogTitle']?>">
+                        </a>
+                    </div>
+
+                    <div class="list__text">
+
+                        <div class="list__name"><b><?=$blog['nickName']?></b><small><?=date('Y-m-d', $blog['blogRegTime'])?></small></div>
+
+                        <h3 class="title"><?=$blog['blogTitle']?></h3>
+                        <p class="content"><?=$blog['blogContents']?></p>
+                        
+                    </div>
+
                 </div>
-
-                <div class="list__text">
-
-                    <div class="list__name"><b><?=$blog['nickName']?></b><small><?=date('Y-m-d', $blog['blogRegTime'])?></small></div>
-
-                    <h3 class="title"><?=$blog['blogTitle']?></h3>
-                    <p class="content"><?=$blog['blogContents']?></p>
-                    
-                </div>
-
-            </div>
+        <?php }
+    }else { ?>
+            <h3 class="noneboard">일치하는 게시물이 없습니다.</h3>
     <?php } ?>
-
             <!-- //list__each -->
         </div>
     </div>

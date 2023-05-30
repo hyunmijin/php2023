@@ -8,25 +8,19 @@
     
     $youName=$_SESSION['youName'];
     $youEmail=$_SESSION['youEmail'];
+    $memberID=$_SESSION['memberID'];
     $sql = "SELECT * FROM members2 WHERE  youEmail = '{$youEmail}'";
     $Result = $connect -> query($sql);
     $Info = $Result -> fetch_array(MYSQLI_ASSOC);
+ 
+    $sql = "SELECT count(memberID) FROM blog WHERE memberID = '{$memberID}'";
+    
+    // echo $sql;echo $sql;echo $sql;echo $sql;echo $sql;
 
-    // echo "</pre>";echo "<pre>";
-    //     var_dump($Info);
-    // echo "</pre>";
-    // 생년월일 세팅
-    $oldYouBirth = $Info['youBirth'];
-    $youBirth = explode("-", $Info['youBirth']);
-    // echo $youBirth[0];
-    // echo $youBirth[1];
-    // echo $youBirth[2];
-
-    $sql = "SELECT count(blogID) FROM blog";
     $result = $connect -> query($sql);
 
     $blogTotalCount = $result -> fetch_array(MYSQLI_ASSOC);
-    $blogTotalCount = $blogTotalCount['count(blogID)'];
+    $blogTotalCount = $blogTotalCount['count(memberID)'];
 ?>
 
 <!DOCTYPE html>
@@ -117,7 +111,7 @@
         /* scroll end */
     </style>
 </head>
-<body >
+<body id="scroll">
     <div id="skip">
         <a href="#header">헤더 영역 바로가기</a>
         <a href="#main">컨텐츠 영역 바로가기</a>
@@ -140,7 +134,7 @@
                     <div class="aside1 aside__bmStyle">
                         <span>나의정보</span>
                         <ul>
-                            <li><a href="#">프로필 설정</a></li>
+                            <li><a href="myInfoProfile.php">프로필 설정</a></li>
                             <li><a href="myInfoModifyinfo.php">회원정보 수정</a></li>
                         </ul>
                     </div>
@@ -148,14 +142,14 @@
                         <span>나의정보</span>
                         <ul>
                             <li><a href="myinfoMywrite.php" class="active">내가 쓴 게시물</a></li>
-                            <li><a href="#" >내가 쓴 댓글</a></li>
+                            <li><a href="myinfoMyComment.php" >내가 쓴 댓글</a></li>
                             <li><a href="#" >내 제품 기록</a></li>
                         </ul>
                     </div>
                     <div class="aside3 ">
                         <span>알림</span>
                         <ul>
-                            <li><a href="#">알림설정</a></li>
+                            <li><a href="myInfoSNSAgree.php">알림설정</a></li>
                         </ul>
                     </div>
                 </div>
@@ -165,7 +159,7 @@
                     </div>
                     <div class="info__form" >
                         <div class="info__subtitle">
-                            <h3>나의 게시글(<em>0</em>)</h3>
+                            <h3>나의 게시글(<em><?= $blogTotalCount?></em>)</h3>
                             <!-- <span class="empty"></span> -->
                         </div>
                         <div class="mywrite__table">
@@ -192,17 +186,13 @@
         $page = 1;
     }
 
-    $viewNum = 10;
+    $viewNum = 11;
     $viewLimit = ($viewNum * $page) - $viewNum; 
 
-    //   1~20 DESC LIMIT 0, 20 -> page1 (viewNum * 1) - viewNum
-    // 21~40 DESC LIMIT 20, 20 -> page2 (viewNum * 2) - viewNum
-    // 40~60 DESC LIMIT 40, 20 -> page3 (viewNum * 3) - viewNum
-    // 60~80 DESC LIMIT 60, 20 -> page4 (viewNum * 4) - viewNum
-
-    $sql = "SELECT b.blogID, b.blogContents, b.blogImgFile,  b.blogTitle, m.youName, b.blogRegTime, b.blogView ,m.nickName FROM blog b JOIN members2 m ON b.memberID = m.memberID ORDER BY blogID DESC;";
+    $sql = "SELECT b.blogID, b.blogContents, b.blogImgFile,  b.blogTitle, m.youName, b.blogRegTime, b.blogView ,m.nickName FROM blog b JOIN members2 m ON b.memberID = m.memberID where m.youEmail = '{$youEmail}' ORDER BY blogID DESC LIMIT {$viewLimit}, {$viewNum};";
+    
     $result = $connect -> query($sql);
-
+    
     if($result){
         $count = $result -> num_rows;
 
@@ -211,19 +201,17 @@
                 $info = $result -> fetch_array(MYSQLI_ASSOC);
 
                 echo "<tr>";
-                echo "<td>".${'i'}."</td>";
+                echo "<td>".$info['blogID']."</td>";
                 echo "<td><a href='../shareBoard/shareBoardView.php?blogID={$info['blogID']}'>".$info['blogTitle']."</td>";
                 echo "<td>".date('Y-m-d', $info['blogRegTime'])."</td>";
                 echo "<td><a href='../shareBoard/shareBoardModify.php?blogID={$info['blogID']}' class='modifyBtn'>수정</a>/<a href='../shareBoard/shareBoardRemove2.php?blogID={$info['blogID']}' class='modifyBtn' onclick=\"return confirm('정말 삭제하시겠습니까?')\">삭제</a></td>";
-                
-                
-
                 echo "</tr>";
             }
         } else {
             echo "<tr><td colspan='4'>게시글이 없습니다.</td></tr>";
         }
     }
+    
 ?>
                                     <!-- <tr>
                                         <td>9</td>
@@ -314,14 +302,51 @@
                             </table>
                         </div> 
                         <div class="notice__pages mb50">
-                            <ul>                        
-                                <li><a href="#">&lt;</a></li>
+                            <ul>   
+                            <?php
+    //게시글 총 갯수
+
+    //총 페이지 갯수
+    $blogTotalCount = ceil($blogTotalCount/$viewNum);
+
+    // echo $boardTatalCount;
+    //1 2 3 4 5 6 7 8 9 10 11 12 13 ...
+    $pageView = 5;
+    $startPage = $page - $pageView;
+    $endPage = $page + $pageView;
+
+    //처음 페이지 초기화/ 마지막 페이지
+    if($startPage < 1) $startPage =1;
+    if($endPage >= $blogTotalCount) $endPage = $blogTotalCount;
+
+    // 첫 페이지로 가기/ 이전 페이지로 가기
+    if($page !== 1 && $blogTotalCount !=0 && $page <= $blogTotalCount){
+        echo "<li><a href='myinfoMywrite.php?page=1'>처음으로</a></li>";
+        $prevPage = $page - 1;
+        echo "<li><a href='myinfoMywrite.php?page={$prevPage}'>이전</a></li>";
+    }
+
+    //페이지
+    for($i=$startPage; $i<=$endPage; $i++){
+        $active = "";
+        if($i == $page) $active = "active";
+
+        echo "<li class='{$active}'><a href='myinfoMywrite.php?page={$i}'>{$i}</a></li>";
+    }
+    // 마지막 페이지로/ 다음 페이지로
+    if($page != $blogTotalCount && $page <= $blogTotalCount){
+        $nextPage = $page + 1;
+        echo "<li><a href='myinfoMywrite.php?page={$nextPage}'>다음</a></li>";
+        echo "<li><a href='myinfoMywrite.php?page={$blogTotalCount}'>마지막으로</a></li>";
+    }
+?>                     
+                                <!-- <li><a href="#">&lt;</a></li>
                                 <li class="active"> <a  href="#">1</a></li>
                                 <li><a href="#">2</a></li>
                                 <li><a href="#">3</a></li>
                                 <li><a href="#">4</a></li>
                                 <li><a href="#">5</a></li>
-                                <li><a href="#">></a></li>
+                                <li><a href="#">></a></li> -->
                             </ul>
                         </div>      
                     </div>

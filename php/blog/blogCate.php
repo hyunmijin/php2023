@@ -47,7 +47,7 @@
             }
         ?>
         </div>
-        <div class="bolg__inner">
+        <div class="blog__inner">
             <div class="left mt145">
                 <div class="blog__wrap">
                         <div class="cards__inner col row line3">
@@ -74,7 +74,7 @@
 
                     <?php include "../include/blogCate.php" ?>
 
-                    <?php include "../include/blogLatest.php" ?>
+                    <?php include "../include/blogNew.php" ?>
 
                     <?php include "../include/blogPopular.php" ?>
 

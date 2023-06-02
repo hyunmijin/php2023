@@ -40,7 +40,7 @@
                 </form>
             </div>
         </div>
-        <div class="bolg__inner btStyle">
+        <div class="blog__inner btStyle">
             <div class="left">
                 <div class="blog__wrap">
                     <h2>All Posts</h2>
@@ -81,33 +81,20 @@
             </div>
         </div>
     <?php } ?>
-
                     </div>
                 </div>
             </div>
             <div class="right">
                 <div class="blog__aside">
-                    <div class="intro">
-                        <picture class="img">
-                            <source
-                                srcset="../html/assets/img/join1.jpg, ../html/assets/img/join1.jpg 2x, ../html/assets/img/join1.jpg 3x" />
-                            <img src="../html/assets/img/join1.jpg" alt="소개이미지">
-                        </picture>
-                        <p class="text">개발자로서 성장하기 위한 팁들을 공유하고 있습니다.
-                        </p>
-                    </div>
-                    <div class="cate">
-                        <h4>카테고리</h4>
-                    </div>
-                    <div class="cate">
-                        <h4>최신 글</h4>
-                    </div>
-                    <div class="cate">
-                        <h4>인기글</h4>
-                    </div>
-                    <div class="cate">
-                        <h4>최신 댓글</h4>
-                    </div>
+                    <?php include "../include/blogTitle.php" ?>
+
+                    <?php include "../include/blogCate.php" ?>
+
+                    <?php include "../include/blogNew.php" ?>
+
+                    <?php include "../include/blogPopular.php" ?>
+
+                    <?php include "../include/blogComment.php" ?>
                 </div>
             </div>
         </div>
